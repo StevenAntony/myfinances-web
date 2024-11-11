@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "name": "Yape",
+        "active": true
+    },
+    {
+        "id": 2,
+        "name": "Daviplata",
+        "active": true
+    },
+    {
+        "id": 3,
+        "name": "Efectivo",
+        "active": true
+    },
+    {
+        "id": 4,
+        "name": "Transferencia",
+        "active": true
+    }
+]
