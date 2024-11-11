@@ -1,4 +1,4 @@
-import NavBar from "@/components/nav-bar";
+import NavBar from "@/components/common/nav-bar";
 import "primereact/resources/themes/lara-light-cyan/theme.css";
 
 export default function RootLayout({
@@ -8,6 +8,9 @@ export default function RootLayout({
 }>) {
 
     return (
-        <NavBar />
+        <div>
+            <NavBar />
+            {children}
+        </div>
     );
 }

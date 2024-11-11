@@ -1,0 +1,26 @@
+[
+    {
+        "title": "Beneficios tarjeta",
+        "description": "S/ 200",
+        "percentage": 50,
+        "type": "positive"
+    },
+    {
+        "title": "Ganancias tarjeta",
+        "description": "S/ 200",
+        "percentage": 50,
+        "type": "negative"
+    },
+    {
+        "title": "Beneficios tarjeta",
+        "description": "S/ 200",
+        "percentage": 50,
+        "type": "negative"
+    },
+    {
+        "title": "Ganancias tarjeta",
+        "description": "S/ 200",
+        "percentage": 50,
+        "type": "positive"
+    }
+]
