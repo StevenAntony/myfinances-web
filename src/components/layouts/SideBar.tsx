@@ -1,5 +1,6 @@
-import { SideBarProps } from "./layout.props";
-import { Button, Layout, Menu, theme, Header, Sider, Content } from 'antd';
+'use client'
+import { SideBarProps } from "./layout";
+import { Button, Layout, Menu, theme } from 'antd';
 import {
     MenuFoldOutlined,
     MenuUnfoldOutlined,
@@ -7,11 +8,16 @@ import {
     UserOutlined,
     VideoCameraOutlined,
 } from '@ant-design/icons';
+import { useState } from "react";
+
+const { Header, Sider, Content } = Layout;
 
 export default function SideBar(props: SideBarProps) {
+    const [collapsed, setCollapsed] = useState(false);
+
     return (
-        <Layout>
-            <Sider trigger={null} collapsible collapsed={props.isVisible}>
+        <Layout style={{ minHeight: '100vh' }}>
+            <Sider trigger={null} collapsible collapsed={collapsed}>
                 <div className="demo-logo-vertical" />
                 <Menu
                     theme="dark"
@@ -36,15 +42,30 @@ export default function SideBar(props: SideBarProps) {
                     ]}
                 />
             </Sider>
-            <Content
-                style={{
-                    margin: '24px 16px',
-                    padding: 24,
-                    minHeight: 280,
-                }}
-            >
-                {props.children}
-            </Content>
+            <Layout>
+                <Header style={{ padding: 0, background: 'white' }} className="bg-white">
+                    <Button
+                        type="text"
+                        icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+                        onClick={() => setCollapsed(!collapsed)}
+                        style={{
+                            fontSize: '16px',
+                            width: 64,
+                            height: 64,
+                        }}
+                    />
+                </Header>
+
+                <Content
+                    style={{
+                        margin: '24px 16px',
+                        padding: 24,
+                        minHeight: 280,
+                    }}
+                >
+                    {props.children}
+                </Content>
+            </Layout>
         </Layout>
     )
 }
