@@ -1,9 +1,9 @@
-export interface TransactionInterface { 
+export interface TableTransactionInterface {
     id: string;
     date: string;
+    description?: string;
     type: string;
     payment_type: string;
-    category: string;
-    description?: string;
     amount: number;
+    category: string;
 }

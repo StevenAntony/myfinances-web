@@ -13,9 +13,9 @@ export class TransactionListService extends SupaBaseService<TransactionInterface
         
         const { data, error } = await supabase
             .from('transactions')
-            .select('type')
+            .select('*')
             .eq('user_id', user?.id);
-        
+        // type, payment_type
         this.data = data as Array<TransactionInterface>;
         this.error = error;
     }

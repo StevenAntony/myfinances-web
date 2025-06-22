@@ -1,23 +1,15 @@
-'use client'
-import { TransactionListService } from "@/src/core/supabase/services/transactions/TransactionList.service";
-import { useEffect, useState } from "react";
+import ListTransaction from "@/src/pages/app/transaction/ListTransaction";
+import { Suspense } from "react";
+import Loading from "./loading";
 
-export default async function TransactionsPage () {
-    const [transacciones, setTransacciones] = useState<any[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
-
-    const fecth = async () => {
-      const service = (new TransactionListService());
-      await service.__invoke()
-      const lista = service.data
-      console.log(lista);
-      
-    }
-
-    useEffect(() => {
-      fecth()  
-    }, [])
-
-    return 'Listar transacciones'
+export default function TransactionsPage () {
+    
+    return (
+      <div className="bg-white p-[24px] shadow border rounded-sm border-gray-200">
+        <p className="text-2xl font-semibold text-slate-800 mb-3">Historial Transacción</p>
+        <Suspense fallback={<Loading />}>
+          <ListTransaction />
+        </Suspense>
+      </div>
+    )
 }

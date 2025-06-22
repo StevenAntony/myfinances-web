@@ -2,8 +2,11 @@
 import { SideBarProps } from "./layout";
 import { Button, Layout, Menu, theme } from 'antd';
 import {
+    DiffOutlined,
+    HomeOutlined,
     MenuFoldOutlined,
     MenuUnfoldOutlined,
+    SyncOutlined,
     UploadOutlined,
     UserOutlined,
     VideoCameraOutlined,
@@ -25,20 +28,15 @@ export default function SideBar(props: SideBarProps) {
                     defaultSelectedKeys={['1']}
                     items={[
                         {
-                            key: '1',
-                            icon: <UserOutlined />,
-                            label: 'nav 1',
+                            key: 'dashboard',
+                            icon: <HomeOutlined />,
+                            label: 'Dashboard',
                         },
                         {
-                            key: '2',
-                            icon: <VideoCameraOutlined />,
-                            label: 'nav 2',
-                        },
-                        {
-                            key: '3',
-                            icon: <UploadOutlined />,
-                            label: 'nav 3',
-                        },
+                            key: 'transaction',
+                            icon: <SyncOutlined />,
+                            label: 'Transacciones',
+                        }
                     ]}
                 />
             </Sider>
