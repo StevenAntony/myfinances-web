@@ -2,7 +2,8 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #1d293d;
+  --color-border: #ffffff;
 }
 
 @theme inline {
@@ -12,15 +13,29 @@
   --font-mono: var(--font-geist-mono);
 }
 
-/* @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0f0f0f;
+    --foreground: #f1f1f1;
+    --color-border: #ffffff33;
+    /* --foreground: #ffffffa6; */
   }
-} */
+}
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.card-custom {
+  background: var(--background);
+  padding: 24px;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  box-shadow: 0 1px 3px 0 #0000001a, 0 1px 2px -1px #0000001a;
+}
+
+.card-custom p {
+  color: var(--foreground);
 }

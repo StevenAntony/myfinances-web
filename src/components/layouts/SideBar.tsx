@@ -20,9 +20,10 @@ export default function SideBar(props: SideBarProps) {
 
     return (
         <Layout style={{ minHeight: '100vh' }}>
-            <Sider trigger={null} collapsible collapsed={collapsed}>
+            <Sider className="!bg-[var(--background)]" trigger={null} collapsible collapsed={collapsed}>
                 <div className="demo-logo-vertical" />
                 <Menu
+                    className="!bg-[var(--background)] h-full"
                     theme="dark"
                     mode="inline"
                     defaultSelectedKeys={['1']}
@@ -41,10 +42,10 @@ export default function SideBar(props: SideBarProps) {
                 />
             </Sider>
             <Layout>
-                <Header style={{ padding: 0, background: 'white' }} className="bg-white">
+                <Header style={{ padding: 0 }} className="!bg-[var(--background)]">
                     <Button
                         type="text"
-                        icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+                        icon={collapsed ? <MenuUnfoldOutlined className="!text-[var(--foreground)]" /> : <MenuFoldOutlined className="!text-[var(--foreground)]" />}
                         onClick={() => setCollapsed(!collapsed)}
                         style={{
                             fontSize: '16px',
@@ -55,8 +56,8 @@ export default function SideBar(props: SideBarProps) {
                 </Header>
 
                 <Content
+                    className="!bg-[var(--background)]/99"
                     style={{
-                        margin: '24px 16px',
                         padding: 24,
                         minHeight: 280,
                     }}

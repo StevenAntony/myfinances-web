@@ -18,7 +18,7 @@ export default function Login({ }: Props) {
 
     if (session) {
         router.push('/dashboard/transactions');
-        return null;
+        return <FullScreenLoading />;
     }
     
     return (
