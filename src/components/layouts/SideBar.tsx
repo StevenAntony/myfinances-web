@@ -32,6 +32,16 @@ const siderStyle: React.CSSProperties = {
   scrollbarGutter: 'stable',
 };
 
+const headerStyle: React.CSSProperties = {
+    position: 'sticky',
+    top: 0,
+    zIndex: 1,
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    padding: 0
+}
+
 export default function SideBar(props: SideBarProps) {
     const [collapsed, setCollapsed] = useState(false);
 
@@ -66,8 +76,8 @@ export default function SideBar(props: SideBarProps) {
                 />
             </Sider>
             <Layout>
-                <Header style={{ padding: 0 }} className="!bg-[var(--background)]">
-                    <div className="flex justify-between">
+                <Header style={headerStyle} className="!bg-[var(--background)] border-b border-slate-200">
+                    <div className="flex justify-between w-full">
                         <Button
                             type="text"
                             icon={collapsed ? <MenuUnfoldOutlined className="!text-[var(--foreground)]" /> : <MenuFoldOutlined className="!text-[var(--foreground)]" />}
