@@ -18,6 +18,8 @@ import {
     WalletOutlined,
 } from '@ant-design/icons';
 import { useState } from "react";
+import type { MenuProps } from "antd";
+import { useRouter } from "next/navigation";
 
 const { Header, Sider, Content } = Layout;
 
@@ -44,6 +46,7 @@ const headerStyle: React.CSSProperties = {
 
 export default function SideBar(props: SideBarProps) {
     const [collapsed, setCollapsed] = useState(false);
+    const router = useRouter();
 
     const menuItems = [
         { key: "dashboard", label: "Dashboard", icon: <HomeOutlined /> },
@@ -56,6 +59,12 @@ export default function SideBar(props: SideBarProps) {
         { key: "accounts", label: "Cuentas", icon: <WalletOutlined /> },
         { key: "loans", label: "Préstamos", icon: <SignatureOutlined /> },
     ]
+
+    const handleClick: MenuProps['onClick'] = (e) => {
+        console.log("Clickeaste:", e.key);
+        router.push(`/dashboard/${e.key}`);
+        // Puedes navegar o hacer algo aquí
+    };
 
     return (
         <Layout style={{ minHeight: '100vh' }}>
@@ -71,6 +80,7 @@ export default function SideBar(props: SideBarProps) {
                     className="!bg-[var(--background)]"
                     theme="light"
                     mode="inline"
+                    onClick={handleClick}
                     defaultSelectedKeys={['1']}
                     items={menuItems}
                 />

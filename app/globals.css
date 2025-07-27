@@ -39,3 +39,7 @@ body {
 .card-custom p {
   color: var(--foreground);
 }
+
+.ant-layout-sider-children {
+  width: 200px;
+}
