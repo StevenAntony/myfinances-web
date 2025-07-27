@@ -13,7 +13,7 @@ export default function TransactionsPage() {
             </div>
             <Suspense fallback={<Loading />}>
                 Lista
-                {/* <ListTransaction /> */}
+                <ListTransaction />
             </Suspense>
         </div>
     )
