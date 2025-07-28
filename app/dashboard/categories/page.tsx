@@ -1,15 +1,15 @@
 import TitlePage from "@/src/components/customs/title-page";
+import HeaderCategory from "@/src/pages/app/categories/HeaderCategory";
 import ListCategories from "@/src/pages/app/categories/ListCategories";
+import { CategoriesPageProvider } from "@/src/pages/app/categories/contexts/CategoriesPageContext";
 
 export default function CategoriesPage() {
     return (
-        <div className="space-y-4">
-            <TitlePage 
-                title="Categorías" 
-                description="Organiza tus ingresos y gastos por categorías" 
-                titleButton="Nueva Categoría"
-            />
-            <ListCategories />
-        </div>
+        <CategoriesPageProvider>
+            <div className="space-y-4">
+                <HeaderCategory />
+                <ListCategories />
+            </div>
+        </CategoriesPageProvider>
     )
 }

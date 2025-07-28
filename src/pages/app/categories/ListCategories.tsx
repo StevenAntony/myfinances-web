@@ -1,4 +1,4 @@
-import CardCategory from "./components/CardCategory"
+import CardCategory from "./components/card-category"
 import { categoriesDraft } from "./draft/categoriesDraft"
 
 

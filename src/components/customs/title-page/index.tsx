@@ -6,9 +6,10 @@ type Props = {
     title: string
     description: string
     titleButton: string
+    handleButton?: () => void
 }
 
-export default function TitlePage({ title, description, titleButton }: Props) {
+export default function TitlePage({ title, description, titleButton, handleButton }: Props) {
     return (
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div>
@@ -16,7 +17,7 @@ export default function TitlePage({ title, description, titleButton }: Props) {
                 <p className="text-slate-600"> { description } </p>
             </div>
 
-            <Button onClick={() => {}} className="!bg-emerald-600 !hover:bg-emerald-700 !h-10 !text-white">
+            <Button onClick={handleButton} className="!bg-emerald-600 !hover:bg-emerald-700 !h-10 !text-white">
                 <PlusOutlined className="w-4 h-4" />
                 { titleButton }
             </Button>
