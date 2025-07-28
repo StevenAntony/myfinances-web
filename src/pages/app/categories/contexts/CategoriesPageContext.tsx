@@ -1,13 +1,13 @@
 'use client'
 import { createContext, useContext, useState } from "react";
 import { CategoriesPageContextType, CategoriesPageProviderProps } from "./categories-page";
-
-type Props = {}
+import useCreateOrUpdateCategory from "../hooks/useCreateOrUpdateCategory";
 
 const CategoriesPageContext = createContext<CategoriesPageContextType | undefined>(undefined);
 
 export const CategoriesPageProvider = ({ children }: CategoriesPageProviderProps) => {
     const [isOpenForm, setOpenForm] = useState<boolean>(false);
+    const { createOrUpdateCategory, loading: loadingSaveCategory } = useCreateOrUpdateCategory();
 
     const closeForm = () => {
         setOpenForm(false);
@@ -21,6 +21,9 @@ export const CategoriesPageProvider = ({ children }: CategoriesPageProviderProps
         isOpenForm,
         closeForm,
         openForm,
+
+        createOrUpdateCategory,
+        loadingSaveCategory,
     };
 
     return (
