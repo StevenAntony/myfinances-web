@@ -3,6 +3,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { CategoriesPageContextType, CategoriesPageProviderProps } from "./categories-page";
 import useCreateOrUpdateCategory from "../hooks/useCreateOrUpdateCategory";
 import useListCategory from "../hooks/useListCategory";
+import useDeleteCategory from "../hooks/useDeleteCategory";
 
 const CategoriesPageContext = createContext<CategoriesPageContextType | undefined>(undefined);
 
@@ -10,6 +11,7 @@ export const CategoriesPageProvider = ({ children }: CategoriesPageProviderProps
     const [isOpenForm, setOpenForm] = useState<boolean>(false);
     const { createOrUpdateCategory, loading: loadingSaveCategory } = useCreateOrUpdateCategory();
     const { categories, loading: loadingListCategory, listCategory } = useListCategory();
+    const { deleteCategory, loading: loadingDeleteCategory } = useDeleteCategory();
 
     const closeForm = () => {
         setOpenForm(false);
@@ -30,6 +32,9 @@ export const CategoriesPageProvider = ({ children }: CategoriesPageProviderProps
         categories, 
         loadingListCategory,
         listCategory,
+
+        deleteCategory,
+        loadingDeleteCategory,
     };
 
     useEffect(() => {

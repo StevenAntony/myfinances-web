@@ -23,7 +23,6 @@ export default function useListCategory() {
             }
         });
         setCategories([...transformData]);
-        console.log('Se actualizo');
         
         setLoading(false);
     }

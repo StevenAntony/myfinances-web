@@ -3,7 +3,9 @@ import CardCategoryInterface from "../../interfaces/card-category";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
 type Props = {
-    category: CardCategoryInterface
+    category: CardCategoryInterface;
+    deleteCategory: ( id: number ) => void;
+    loadingDeleteCategory: boolean;
 }
 
 const getColorClasses = (color: string) => {
@@ -23,7 +25,7 @@ const getColorClasses = (color: string) => {
     return colorMap[color] || colorMap.blue
 }
 
-export default function CardCategory({ category }: Props) {
+export default function CardCategory({ category, deleteCategory, loadingDeleteCategory }: Props) {
 
     const colors = getColorClasses(category.color)
     const percentage = category.budget > 0 ? (category.monthlySpent / category.budget) * 100 : 0
@@ -45,7 +47,11 @@ export default function CardCategory({ category }: Props) {
                         <Button  className="h-8 w-8">
                             <EditOutlined className="w-3 h-3" />
                         </Button>
-                        <Button  className="h-8 w-8 text-red-600">
+                        <Button  
+                            className="h-8 w-8 text-red-600" 
+                            onClick={() => deleteCategory(category.id as number)}
+                            loading={loadingDeleteCategory}
+                        >
                             <DeleteOutlined className="w-3 h-3" />
                         </Button>
                     </div>

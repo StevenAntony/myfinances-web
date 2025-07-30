@@ -13,6 +13,9 @@ export type CategoriesPageContextType = {
     categories: CardCategoryInterface[];
     loadingListCategory: boolean;
     listCategory: () => void;
+
+    deleteCategory: ( id: number, succes: () => void ) => void;
+    loadingDeleteCategory: boolean;
 }
 
 export type CategoriesPageProviderProps = {
