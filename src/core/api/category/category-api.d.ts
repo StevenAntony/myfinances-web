@@ -7,3 +7,13 @@ export interface CategoryCreateApiInterface {
     icon: string
     budget: number
 }
+
+export interface CategoryListApiInterface {
+    id: number
+    name: string
+    type: ProcessType
+    color: string
+    icon: string
+    budget: number
+    monthlySpent?: number = 0
+}

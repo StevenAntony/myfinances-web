@@ -9,12 +9,13 @@ export default function FormCategory({
 
 }: Props) {
     const [messageApi, contextHolder] = message.useMessage();
-    const { isOpenForm, closeForm, createOrUpdateCategory, loadingSaveCategory } = useCategoriesPageContext();
+    const { isOpenForm, closeForm, createOrUpdateCategory, loadingSaveCategory, listCategory } = useCategoriesPageContext();
     const [form] = Form.useForm();
 
     const handleFinish = (values: any) => {
         createOrUpdateCategory(values, () => {
             closeForm();
+            listCategory();
             messageApi.success('Categoria creada!');
         });
     }
