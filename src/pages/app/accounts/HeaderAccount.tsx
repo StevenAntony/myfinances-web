@@ -1,3 +1,4 @@
+'use client'
 import TitlePage from "@/src/components/customs/title-page"
 
 export default function HeaderAccount() {
