@@ -85,7 +85,8 @@ export default function FormCategory() {
                                     return { label: emoji.emoji, value: emoji.id }
                                 })}
 
-                                onChange={(_, option: any) => {
+                                onChange={(_, option) => {
+                                    if (!option || Array.isArray(option)) return;
                                     form.setFieldsValue({ icon: option?.label });
                                 }}
                             />
