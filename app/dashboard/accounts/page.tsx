@@ -1,5 +1,5 @@
-import HeaderAccount from "@/src/pages/app/accounts/HeaderAccount";
-import ListAccount from "@/src/pages/app/accounts/ListAccount";
+import HeaderAccount from "@/src/components/pages/my/accounts/HeaderAccount";
+import ListAccount from "@/src/components/pages/my/accounts/ListAccount";
 
 export default function AccountsPage() {
     return (

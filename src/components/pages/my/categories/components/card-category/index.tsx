@@ -1,3 +1,4 @@
+'use client'
 import { Button } from "antd";
 import CardCategoryInterface from "../../interfaces/card-category";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";

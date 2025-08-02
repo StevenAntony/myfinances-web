@@ -1,7 +1,7 @@
-import ListTransaction from "@/src/pages/app/transaction/ListTransaction";
+import ListTransaction from "@/src/components/pages/my/transaction/ListTransaction";
 import { Suspense } from "react";
 import Loading from "./loading";
-import FilterTransaction from "@/src/pages/app/transaction/FilterTransaction";
+import FilterTransaction from "@/src/components/pages/my/transaction/FilterTransaction";
 
 export default function TransactionsPage() {
 
