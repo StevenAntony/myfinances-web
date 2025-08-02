@@ -15,5 +15,5 @@ export interface CategoryListApiInterface {
     color: string
     icon: string
     budget: number
-    monthlySpent?: number = 0
+    monthlySpent?: number
 }

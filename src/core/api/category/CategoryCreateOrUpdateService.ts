@@ -14,7 +14,7 @@ export default class CategoryCreateOrUpdateService extends SupaBaseService<any, 
             this.success = false;
         }
 
-        this.data = [];
+        this.data = [data];
         
     }
 }

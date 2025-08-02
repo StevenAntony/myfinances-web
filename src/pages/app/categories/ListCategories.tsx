@@ -2,7 +2,6 @@
 import { ProcessType } from "@/src/utils/consts/ProcessType";
 import CardCategory from "./components/card-category"
 import { useCategoriesPageContext } from "./contexts/CategoriesPageContext"
-import { categoriesDraft } from "./draft/categoriesDraft"
 import PulseLoading from "@/src/components/loading/PulseLoading";
 import EmptyCategory from "./components/empty-category";
 

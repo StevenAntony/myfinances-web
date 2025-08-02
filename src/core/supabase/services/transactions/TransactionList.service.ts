@@ -11,6 +11,10 @@ export class TransactionListService extends SupaBaseService<TransactionInterface
             error: userError
         } = await supabase.auth.getUser()
         
+        if (userError) {
+            this.success = false;
+        }
+
         const { data, error } = await supabase
             .from('transactions')
             .select('*')

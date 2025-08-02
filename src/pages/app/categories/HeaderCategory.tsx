@@ -3,9 +3,7 @@ import TitlePage from "@/src/components/customs/title-page"
 import { useCategoriesPageContext } from "./contexts/CategoriesPageContext"
 import FormCategory from "./FormCategory";
 
-type Props = {}
-
-export default function HeaderCategory({ }: Props) {
+export default function HeaderCategory() {
     const { openForm } = useCategoriesPageContext();
     return (
         <div>

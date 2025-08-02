@@ -3,11 +3,7 @@ import { Button, Drawer, Form, Input, InputNumber, message, Select } from "antd"
 import { useCategoriesPageContext } from "./contexts/CategoriesPageContext";
 import { colorPaletteCategoryData, emojiCategoryData } from "@/src/utils/data/categoryData";
 
-type Props = {}
-
-export default function FormCategory({
-
-}: Props) {
+export default function FormCategory() {
     const [messageApi, contextHolder] = message.useMessage();
     const { isOpenForm, closeForm, createOrUpdateCategory, loadingSaveCategory, listCategory } = useCategoriesPageContext();
     const [form] = Form.useForm();

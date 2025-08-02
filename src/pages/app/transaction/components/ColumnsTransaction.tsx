@@ -1,8 +1,6 @@
 import formatCurrency from '@/src/utils/formats/formatCurrency';
 import formatDateTime from '@/src/utils/formats/formatDateTime';
 
-type Props = {}
-
 function ColumnAmount ({ amount }: { amount: number }) {
     return (
         <span className={`text-slate-800 font-semibold`}>{formatCurrency(amount)}</span>

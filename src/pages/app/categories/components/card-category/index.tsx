@@ -9,7 +9,7 @@ type Props = {
 }
 
 const getColorClasses = (color: string) => {
-    const colorMap: { [key: string]: any } = {
+    const colorMap: { [key: string]: { bg: string, border: string, text: string, progress: string } } = {
         red: { bg: "bg-red-50", border: "border-red-200", text: "text-red-800", progress: "bg-red-500" },
         blue: { bg: "bg-blue-50", border: "border-blue-200", text: "text-blue-800", progress: "bg-blue-500" },
         yellow: { bg: "bg-yellow-50", border: "border-yellow-200", text: "text-yellow-800", progress: "bg-yellow-500" },

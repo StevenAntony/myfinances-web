@@ -1,4 +1,3 @@
-import TitlePage from "@/src/components/customs/title-page";
 import HeaderCategory from "@/src/pages/app/categories/HeaderCategory";
 import ListCategories from "@/src/pages/app/categories/ListCategories";
 import { CategoriesPageProvider } from "@/src/pages/app/categories/contexts/CategoriesPageContext";

@@ -1,6 +1,6 @@
 'use client'
 import { SideBarProps } from "./layout";
-import { Badge, Button, Layout, Menu, theme } from 'antd';
+import { Badge, Button, Layout, Menu } from 'antd';
 import {
     AimOutlined,
     BarChartOutlined,
@@ -14,7 +14,6 @@ import {
     PieChartOutlined,
     PlusOutlined,
     SignatureOutlined,
-    SyncOutlined,
     WalletOutlined,
 } from '@ant-design/icons';
 import { useState } from "react";

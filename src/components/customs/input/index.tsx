@@ -2,8 +2,6 @@ import type { InputProps } from 'antd';
 import { Input } from 'antd'
 import React from 'react'
 
-type Props = {}
-
 export default function InputCustom(props: InputProps) {
     return (
         <div>

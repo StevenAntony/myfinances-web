@@ -5,7 +5,7 @@ import CardCategoryInterface from "../interfaces/card-category";
 export default function useListCategory() {
     const [categories, setCategories] = useState<CardCategoryInterface[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
-    const [error, setError] = useState<string | null>(null);
+    // const [error, setError] = useState<string | null>(null);
 
     const listCategory = async () => {
         setLoading(true)

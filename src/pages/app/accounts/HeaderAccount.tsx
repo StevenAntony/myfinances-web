@@ -1,8 +1,6 @@
 import TitlePage from "@/src/components/customs/title-page"
 
-type Props = {}
-
-export default function HeaderAccount({ }: Props) {
+export default function HeaderAccount() {
     return (
         <TitlePage 
             title="Cuentas y Fuentes"

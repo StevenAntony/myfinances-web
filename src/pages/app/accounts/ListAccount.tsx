@@ -2,8 +2,6 @@ import { WalletOutlined } from "@ant-design/icons"
 import CardAccount from "./components/card-account"
 import { Card } from "antd"
 
-type Props = {}
-
 const accounts = [
     {
         id: 1,
@@ -53,7 +51,7 @@ const accounts = [
     },
 ]
 
-export default function ListAccount({ }: Props) {
+export default function ListAccount() {
 
     const totalBalance = accounts.reduce((sum, account) => sum + account.balance, 0)
 

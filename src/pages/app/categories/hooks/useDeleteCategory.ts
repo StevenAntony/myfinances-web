@@ -4,7 +4,7 @@ import { useState } from "react";
 export default function useDeleteCategory() {
 
     const [loading, setLoading] = useState<boolean>(false);
-    const [error, setError] = useState<string | null>(null);
+    // const [error, setError] = useState<string | null>(null);
 
     const deleteCategory = async ( id: number, success: () => void ) => {
         setLoading(true)

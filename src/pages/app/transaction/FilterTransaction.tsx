@@ -1,10 +1,7 @@
 'use client'
 import { Input, Select } from "antd"
 
-
-type Props = {}
-
-export default function FilterTransaction({ }: Props) {
+export default function FilterTransaction() {
     return (
         <div className="card-custom flex gap-4">
             <Input.Search placeholder="Buscar..." />

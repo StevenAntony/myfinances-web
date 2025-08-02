@@ -4,7 +4,7 @@ import { useState } from "react";
 
 export default function useCreateOrUpdateCategory() {
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState<string | null>(null);
+    // const [error, setError] = useState<string | null>(null);
 
     const createOrUpdateCategory = async (category: CategoryCreateApiInterface, success: () => void) => {
         setLoading(true)
