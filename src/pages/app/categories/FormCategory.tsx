@@ -2,13 +2,14 @@
 import { Button, Drawer, Form, Input, InputNumber, message, Select } from "antd"
 import { useCategoriesPageContext } from "./contexts/CategoriesPageContext";
 import { colorPaletteCategoryData, emojiCategoryData } from "@/src/utils/data/categoryData";
+import { CategoryCreateApiInterface } from "@/src/core/api/category/category-api";
 
 export default function FormCategory() {
     const [messageApi, contextHolder] = message.useMessage();
     const { isOpenForm, closeForm, createOrUpdateCategory, loadingSaveCategory, listCategory } = useCategoriesPageContext();
     const [form] = Form.useForm();
 
-    const handleFinish = (values: any) => {
+    const handleFinish = (values: CategoryCreateApiInterface) => {
         createOrUpdateCategory(values, () => {
             closeForm();
             listCategory();

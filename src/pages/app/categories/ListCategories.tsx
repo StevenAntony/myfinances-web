@@ -5,9 +5,7 @@ import { useCategoriesPageContext } from "./contexts/CategoriesPageContext"
 import PulseLoading from "@/src/components/loading/PulseLoading";
 import EmptyCategory from "./components/empty-category";
 
-type Props = {}
-
-export default function ListCategories({ }: Props) {
+export default function ListCategories() {
     const {
         categories,
         loadingListCategory,

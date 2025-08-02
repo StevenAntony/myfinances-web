@@ -5,10 +5,7 @@ import { useAuth } from "@/src/hooks/useAuth";
 import FullScreenLoading from '@/src/components/loading/FullScreenLoading';
 import { useRouter } from 'next/navigation';
 
-
-type Props = {}
-
-export default function Login({ }: Props) {
+export default function Login() {
     const router = useRouter();
     const { session, supabase, isLoading } = useAuth();
     

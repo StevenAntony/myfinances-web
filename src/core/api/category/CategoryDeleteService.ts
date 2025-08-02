@@ -2,7 +2,7 @@ import { PostgrestError } from "@supabase/supabase-js";
 import { SupaBaseService } from "../../supabase/services/SupaBaseService";
 import supabase from "../../supabase/app.supabase";
 
-export default class CategoryDeleteService extends SupaBaseService<any, PostgrestError> {
+export default class CategoryDeleteService extends SupaBaseService<string, PostgrestError> {
 
     async __invoke ( id: number ) {
         const { data, error } = await supabase.from('categories')
@@ -14,7 +14,7 @@ export default class CategoryDeleteService extends SupaBaseService<any, Postgres
             this.success = false;
         }
 
-        this.data = [data];
+        this.data = [data ?? ''];
     }
 
 }

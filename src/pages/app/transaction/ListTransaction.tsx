@@ -1,13 +1,9 @@
 'use client'
 import PulseLoading from "@/src/components/loading/PulseLoading";
-import type { TableProps } from 'antd';
 import useListTransaction from "./hooks/useListTransaction";
-import ColumnsTransaction from "./components/ColumnsTransaction";
-import { TableTransactionInterface } from "./transaction";
 import CardTransaction from "./components/CardTransaction";
 import { transactionsDraft } from "./draft/transactionsDraft";
 
-type ColumnsType<T extends object = object> = TableProps<T>['columns'];
 
 export default function ListTransaction() {
 

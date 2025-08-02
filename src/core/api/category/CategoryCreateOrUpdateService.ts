@@ -3,7 +3,7 @@ import { SupaBaseService } from "../../supabase/services/SupaBaseService";
 import supabase from "../../supabase/app.supabase";
 import { CategoryCreateApiInterface } from "./category-api";
 
-export default class CategoryCreateOrUpdateService extends SupaBaseService<any, PostgrestError> {
+export default class CategoryCreateOrUpdateService extends SupaBaseService<string, PostgrestError> {
     async __invoke(category: CategoryCreateApiInterface) {
         const { data, error } = await supabase.from('categories').insert([
             { ...category }
@@ -14,7 +14,7 @@ export default class CategoryCreateOrUpdateService extends SupaBaseService<any, 
             this.success = false;
         }
 
-        this.data = [data];
+        this.data = [data ?? ''];
         
     }
 }
