@@ -21,7 +21,7 @@ export default function FormCategory() {
         <>
             { contextHolder }
             <Drawer
-                title="Basic Drawer"
+                title="Crear categoria"
                 closable={{ 'aria-label': 'Close Button' }}
                 onClose={closeForm}
                 open={isOpenForm}

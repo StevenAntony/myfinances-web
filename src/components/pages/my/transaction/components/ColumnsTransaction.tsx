@@ -1,5 +1,5 @@
-import formatCurrency from '@/src/utils/formats/formatCurrency';
-import formatDateTime from '@/src/utils/formats/formatDateTime';
+import formatCurrency from '@/src/utils/shared/formats/formatCurrency';
+import formatDateTime from '@/src/utils/shared/formats/formatDateTime';
 
 function ColumnAmount ({ amount }: { amount: number }) {
     return (
