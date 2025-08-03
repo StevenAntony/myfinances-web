@@ -7,6 +7,7 @@ import formatCurrency from "@/src/utils/shared/formats/formatCurrency"
 import { AccountType, AccountTypeInfo } from "@/src/utils/consts/AccountType"
 import CardTypeAccount from "./components/card-type-account"
 import PulseLoading from "@/src/components/loading/PulseLoading"
+import EmptyList from "@/src/components/customs/empty/EmptyLIst"
 
 export default function ListAccount() {
     const { accounts, loadingListAccount } = useAccountPageContext();
@@ -27,7 +28,7 @@ export default function ListAccount() {
                     <div className="text-center">
                         <p className="text-sm text-slate-600 mb-2">Balance Total</p>
                         <p className={`text-4xl font-bold ${totalBalance >= 0 ? "text-emerald-600" : "text-red-600"}`}>
-                            { formatCurrency(totalBalance) }
+                            {formatCurrency(totalBalance)}
                         </p>
                     </div>
                 </div>
@@ -35,9 +36,23 @@ export default function ListAccount() {
 
             {/* Accounts Grid */}
             <PulseLoading isLoading={loadingListAccount}>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {accounts.map((account) => <CardAccount account={account} key={account.id} />)}
-                </div>
+                {
+                    accounts.length !== 0
+                        ? (
+                            <EmptyList
+                                title="No tienes cuentas creadas"
+                                description="Las cuentas te ayudan a saber donde se encuentra distribuido tu dinero. Crea tu primera cuenta para
+                                            comenzar a controlar mejor tus finanzas."
+                                example="Ejemplos: Cuenta ahorro, efectivo, Cuenta ahorro secundario"
+                                icon={<WalletOutlined className="text-xl" />}
+                            />
+                        )
+                        : (
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                {accounts.map((account) => <CardAccount account={account} key={account.id} />)}
+                            </div>
+                        )
+                }
             </PulseLoading>
 
             {/* Account Summary */}
