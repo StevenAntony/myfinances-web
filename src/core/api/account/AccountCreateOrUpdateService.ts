@@ -5,7 +5,7 @@ import { AccountCreateApiInterface } from "./account-api";
 
 export default class AccountCreateOrUpdateService extends SupaBaseService<string, PostgrestError> {
     async __invoke(body: AccountCreateApiInterface) {
-        const { data, error } = await supabase.from('categories').insert([
+        const { data, error } = await supabase.from('accounts').insert([
             { ...body }
         ]);
 

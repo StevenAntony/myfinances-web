@@ -8,3 +8,13 @@ export interface AccountCreateApiInterface {
     accountNumber?: string;
     creditLimit?: number;
 }
+
+export interface AccountListApiInterface {
+    id: number
+    name: string;
+    type: AccountType,
+    balance?: number;
+    bank?: string;
+    accountNumber?: string;
+    creditLimit?: number;
+}

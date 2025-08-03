@@ -1,5 +1,6 @@
 import { AccountCreateApiInterface } from "@/src/core/api/account/account-api";
 import { ReactNode } from "react";
+import CardAccountInterface from "../interfaces/card-account";
 
 export type AccountPageContextType = {
     isOpenForm: boolean;
@@ -8,6 +9,9 @@ export type AccountPageContextType = {
 
     create: ( category: AccountCreateApiInterface, success: () => void ) => void;
     loadingSaveAccount: boolean;
+
+    accounts: CardAccountInterface[];
+    loadingListAccount: boolean;
 }
 
 export type AccountPageProviderProps = {

@@ -42,12 +42,12 @@ export default function FormAccount({ }: Props) {
                                 placeholder="Seleccionar Tipo"
                                 className="!w-full"
                                 options={Object.entries(AccountTypeInfo).map(([key, info]) => ({
-                                    label: <OptionType data={info} />,
+                                    label: <OptionType data={info} id={key} />,
                                     value: key,
                                 }))}
                             />
                         </Form.Item>
-                        <Form.Item className="flex-1" label="Balance" name={'budgebalancet'}>
+                        <Form.Item className="flex-1" label="Balance" required name={'balance'}>
                             <InputNumber className="!w-full" placeholder="Balance" defaultValue={0} />
                         </Form.Item>
                     </div>

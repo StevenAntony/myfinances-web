@@ -2,11 +2,13 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { AccountPageContextType, AccountPageProviderProps } from "./account-page";
 import useCreateOrUpdateAccount from "../hooks/useCreateOrUpdateAccount";
+import useListAccount from "../hooks/useListAccount";
 const AccountPageContext = createContext<AccountPageContextType | undefined>(undefined);
 
 export const AccountPageProvider = ({ children }: AccountPageProviderProps) => {
     const [isOpenForm, setOpenForm] = useState<boolean>(false);
     const { create, loading: loadingSaveAccount } = useCreateOrUpdateAccount();
+    const { list, accounts, loading: loadingListAccount } = useListAccount();
 
     const closeForm = () => {
         setOpenForm(false);
@@ -23,8 +25,14 @@ export const AccountPageProvider = ({ children }: AccountPageProviderProps) => {
 
         create,
         loadingSaveAccount,
+
+        accounts,
+        loadingListAccount,
     };
 
+    useEffect(() => {
+        list();
+    }, [])
 
     return (
         <AccountPageContext.Provider value={contextValue}>

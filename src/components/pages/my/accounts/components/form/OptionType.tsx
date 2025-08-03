@@ -1,11 +1,12 @@
-import { AccountIcon, AccountType, AccountTypeInfo } from "@/src/utils/consts/AccountType";
+import { AccountType, AccountTypeInfo } from "@/src/utils/consts/AccountType";
 
 type Props = {
-    data: { label: string, icon: string, color: string,  }
+    data: { label: string, icon: string, color: string,  };
+    id: string;
 }
 
-export default function OptionType({ data }: Props) {
-    const Icon = AccountIcon[data.icon as AccountType];
+export default function OptionType({ data, id }: Props) {
+    const Icon = AccountTypeInfo[id as AccountType].icon;
 
     return (
         <div className="flex items-center gap-2">

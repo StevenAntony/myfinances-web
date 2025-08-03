@@ -12,18 +12,16 @@ export enum AccountType {
   DIGITAL = 'digital',
 }
 
-export const AccountIcon: Record<AccountType, any> = {
-  [AccountType.SAVINGS]: SavingIcon,
-  [AccountType.CHECKING]: CheckingIcon,
-  [AccountType.CREDIT]: CreditIcon,
-  [AccountType.CASH]: CashIcon,
-  [AccountType.DIGITAL]: DigitalIcon
+export interface AccountTypeInfoInterface { 
+  label: string;
+  icon: any;
+  color: string; 
 }
 
-export const AccountTypeInfo: Record<AccountType, { label: string, icon: string, color: string }> = {
-  [AccountType.SAVINGS]: { label: 'Cuenta Ahorro', icon: 'savings', color: '#34d399' },
-  [AccountType.CHECKING]: { label: 'Cuenta Corriente', icon: 'checking', color: '#3b82f6' },
-  [AccountType.CREDIT]: { label: 'Tarjeta Crédito', icon: 'credit', color: '#ef4444' },
-  [AccountType.CASH]: { label: 'Efectivo', icon: 'cash', color: '#fbbf24' },
-  [AccountType.DIGITAL]: { label: 'Digital', icon: 'digital', color: '#6b7280' }
+export const AccountTypeInfo: Record<AccountType, AccountTypeInfoInterface> = {
+  [AccountType.SAVINGS]: { label: 'Cuenta Ahorro', icon: SavingIcon, color: '#34d399' },
+  [AccountType.CHECKING]: { label: 'Cuenta Corriente', icon: CheckingIcon, color: '#3b82f6' },
+  [AccountType.CREDIT]: { label: 'Tarjeta Crédito', icon: CreditIcon, color: '#ef4444' },
+  [AccountType.CASH]: { label: 'Efectivo', icon: CashIcon, color: '#fbbf24' },
+  [AccountType.DIGITAL]: { label: 'Digital', icon: DigitalIcon, color: '#6b7280' }
 };
