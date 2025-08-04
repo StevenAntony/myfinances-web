@@ -16,9 +16,10 @@ import {
     SignatureOutlined,
     WalletOutlined,
 } from '@ant-design/icons';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { MenuProps } from "antd";
 import { useRouter } from "next/navigation";
+import { useMediaQuery } from "@/src/hooks/useMediaQuery";
 
 const { Header, Sider, Content } = Layout;
 
@@ -44,7 +45,8 @@ const headerStyle: React.CSSProperties = {
 }
 
 export default function SideBar(props: SideBarProps) {
-    const [collapsed, setCollapsed] = useState(false);
+    const isMobile = useMediaQuery('(max-width: 639px)');
+    const [collapsed, setCollapsed] = useState<boolean>(false);
     const router = useRouter();
 
     const menuItems = [
@@ -65,9 +67,13 @@ export default function SideBar(props: SideBarProps) {
         // Puedes navegar o hacer algo aquí
     };
 
+    useEffect(() => {
+        setCollapsed(isMobile ? true : false);
+    }, [isMobile])
+
     return (
         <Layout style={{ minHeight: '100vh' }}>
-            <Sider style={siderStyle} className="!bg-[var(--background)] !w-[200px]" trigger={null} collapsible collapsed={collapsed}>
+            <Sider style={siderStyle} className="!bg-[var(--background)] !w-[200px]  max-sm:!min-w-0" trigger={null} collapsible collapsed={collapsed}>
                 <div className="flex items-center justify-center gap-2 p-2 h-[64px]">
                     <div className="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center">
                         <WalletOutlined className="text-xl" style={{ color: "#fff" }} />
@@ -97,7 +103,7 @@ export default function SideBar(props: SideBarProps) {
                                 height: 64,
                             }}
                         />
-                        <div className="flex items-center gap-6 px-10">
+                        <div className="flex items-center gap-6 px-10 max-sm:flex-[1] max-sm:justify-between">
                             <Button className="!bg-emerald-600 hover:!bg-emerald-700 !text-white !h-10">
                                 <PlusOutlined className="w-4 h-4" />
                                 Nueva Transacción

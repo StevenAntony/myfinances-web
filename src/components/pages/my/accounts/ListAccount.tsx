@@ -37,7 +37,7 @@ export default function ListAccount() {
             {/* Accounts Grid */}
             <PulseLoading isLoading={loadingListAccount}>
                 {
-                    accounts.length !== 0
+                    accounts.length === 0
                         ? (
                             <EmptyList
                                 title="No tienes cuentas creadas"

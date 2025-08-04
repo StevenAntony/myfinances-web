@@ -43,3 +43,17 @@ body {
 .ant-layout-sider-children {
   width: 200px;
 }
+
+@media (width < 40rem) {
+  .ant-layout-sider-collapsed {
+    flex: 0 0 0px!important;
+    max-width: 0px!important;
+  }
+  .ant-layout-sider {
+    position: fixed!important;
+    z-index: 2;
+  }
+  .ant-layout-header {
+    z-index: 3!important;
+  }
+}
