@@ -2,6 +2,11 @@ import { useState } from "react";
 import CardAccountInterface from "../interfaces/card-account";
 import AccountListService from "@/src/core/api/account/AccountListService";
 
+/**
+ * 
+ * => Hook usardo fuera de la pagina
+ *  -> Page > Transacctions > FormTransactions
+ */
 export default function useListAccount() {
     const [accounts, setAccounts] = useState<CardAccountInterface[]>([]);
     const [loading, setLoading] = useState<boolean>(false);

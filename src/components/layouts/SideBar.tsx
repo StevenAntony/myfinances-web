@@ -20,6 +20,7 @@ import { useEffect, useState } from "react";
 import type { MenuProps } from "antd";
 import { useRouter } from "next/navigation";
 import { useMediaQuery } from "@/src/hooks/useMediaQuery";
+import FormTransaction from "@/src/components/pages/my/transaction/FormTransaction";
 
 const { Header, Sider, Content } = Layout;
 
@@ -45,6 +46,9 @@ const headerStyle: React.CSSProperties = {
 }
 
 export default function SideBar(props: SideBarProps) {
+    // Para abrir el formulario de creación de una transacción
+    const [isOpenFormTransaction, setOpenFormTransaction] = useState<boolean>(false);
+
     const isMobile = useMediaQuery('(max-width: 639px)');
     const [collapsed, setCollapsed] = useState<boolean>(false);
     const router = useRouter();
@@ -104,7 +108,9 @@ export default function SideBar(props: SideBarProps) {
                             }}
                         />
                         <div className="flex items-center gap-6 px-10 max-sm:flex-[1] max-sm:justify-between">
-                            <Button className="!bg-emerald-600 hover:!bg-emerald-700 !text-white !h-10">
+                            <Button
+                                onClick={() => setOpenFormTransaction(true)} 
+                                className="!bg-emerald-600 hover:!bg-emerald-700 !text-white !h-10">
                                 <PlusOutlined className="w-4 h-4" />
                                 Nueva Transacción
                             </Button>
@@ -126,6 +132,10 @@ export default function SideBar(props: SideBarProps) {
                 >
                     {props.children}
                 </Content>
+                <FormTransaction 
+                    isOpen={isOpenFormTransaction}
+                    setOpen={setOpenFormTransaction}
+                />
             </Layout>
         </Layout>
     )

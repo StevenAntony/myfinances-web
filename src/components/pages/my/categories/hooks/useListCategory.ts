@@ -2,6 +2,11 @@ import CategoryListService from "@/src/core/api/category/CategoryListService";
 import { useState } from "react";
 import CardCategoryInterface from "../interfaces/card-category";
 
+/**
+ * 
+ * => Hook usardo fuera de la pagina
+ *  -> Page > Transacctions > FormTransactions
+ */
 export default function useListCategory() {
     const [categories, setCategories] = useState<CardCategoryInterface[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
