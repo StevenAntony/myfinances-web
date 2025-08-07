@@ -7,6 +7,9 @@ import OptionType from "@/src/components/pages/my/accounts/components/form/Optio
 import { Button, DatePicker, Drawer, Form, Input, InputNumber, message, Radio, Select } from "antd";
 import useListCategory from "@/src/components/pages/my/categories/hooks/useListCategory";
 import { PAYMENT_METHOD_CONST } from "@/src/utils/consts/PaymentMethod";
+import useCreateTransaction from "./hooks/useCreateTransaction";
+import { TransactionCreateApiInterface } from "@/src/core/api/transaction/transaction-api";
+import useListTransaction from "./hooks/useListTransaction";
 
 type Props = {
     isOpen: boolean;
@@ -23,16 +26,29 @@ export default function FormTransaction({
 }: Props) {
     const { categories, listCategory } = useListCategory();
     const { accounts, list: listAccount } = useListAccount();
+    const { create, loading } = useCreateTransaction();
+    const { listTransaction } = useListTransaction();
 
     const [categoriesForm, setCategoriesForm] = useState<CategoryListApiInterface[]>([]);
     const [messageApi, contextHolder] = message.useMessage();
     const [form] = Form.useForm();
 
-    const handleFinish = (values: AccountCreateApiInterface) => {
-        /*create(values, () => {
-            closeForm();
-            messageApi.success('Cuenta creada!');
-        });*/
+    const handleFinish = (values: any) => {
+        const body: TransactionCreateApiInterface = {
+            account_id: values.account,
+            category_id: values.category,
+            payment_method: values['payment-method'],
+            amount: values.amount,
+            date: values.date,
+            description: values.name,
+            type: values.type,
+            note: values.note
+        }
+        create(body, () => {
+            setOpen(false);
+            listTransaction();
+            messageApi.success('Transacción creada!');
+        });
     }
 
     const handleValuesChange = (changedValues: any, values: any) => {
@@ -128,7 +144,7 @@ export default function FormTransaction({
                         <Input.TextArea autoSize={{ minRows: 3, maxRows: 3 }} />
                     </Form.Item>
                     <Form.Item className="flex-1" >
-                        <Button className="!w-full" type="primary" htmlType="submit" loading={true}>Guardar</Button>
+                        <Button className="!w-full" type="primary" htmlType="submit" loading={loading}>Guardar</Button>
                     </Form.Item>
                 </Form>
             </Drawer>

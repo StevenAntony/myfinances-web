@@ -1,4 +1,4 @@
-enum PaymentMethodEnum {
+export enum PaymentMethodEnum {
     YAPE = "yape",
     PLIN = "plin",
     AGORA_PAY = "agora_pay",

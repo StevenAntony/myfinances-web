@@ -3,12 +3,13 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { TransactionPageContextType, TransactionPageProviderProps } from "./transaction-page";
 import useListCategory from "@/src/components/pages/my/categories/hooks/useListCategory";
 import { CategoryListApiInterface } from "@/src/core/api/category/category-api";
+import useListTransaction from "../hooks/useListTransaction";
 
 const TransactionPageContext = createContext<TransactionPageContextType | undefined>(undefined);
 
 export const TransactionPageProvider = ({ children }: TransactionPageProviderProps) => {
     const [isOpenForm, setOpenForm] = useState<boolean>(false);
-    const { listCategory, categories, loading: loadingListCategory } = useListCategory();
+    const { listTransaction, loading: loadingListTransaction, transactions } = useListTransaction();
 
     const closeForm = () => {
         setOpenForm(false);
@@ -19,12 +20,12 @@ export const TransactionPageProvider = ({ children }: TransactionPageProviderPro
     }
 
     const contextValue: TransactionPageContextType = {
-        categories: categories as CategoryListApiInterface[],
-        loadingListCategory,
+        transactions,
+        loadingListTransaction,
     };
 
     useEffect(() => {
-        listCategory();
+        listTransaction();
     }, [])
 
     return (

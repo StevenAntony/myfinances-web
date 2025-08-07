@@ -1,10 +1,9 @@
-import { AccountCreateApiInterface } from "@/src/core/api/account/account-api";
 import { ReactNode } from "react";
-import { CategoryListApiInterface } from "@/src/core/api/category/category-api";
+import { TransactionListApiInterface } from "@/src/core/api/transaction/transaction-api";
 
 export type TransactionPageContextType = {
-    categories: CategoryListApiInterface[];
-    loadingListCategory: boolean;
+    transactions: TransactionListApiInterface[];
+    loadingListTransaction: boolean;
 }
 
 export type TransactionPageProviderProps = {

@@ -1,22 +1,18 @@
-import { TableTransactionInterface } from '../transaction';
-import { useEffect, useState } from 'react';
-import { TransactionListService } from '@/src/core/supabase/services/transactions/TransactionList.service';
+import { useState } from 'react';
+import { TransactionListApiInterface } from '@/src/core/api/transaction/transaction-api';
+import { TransactionListService } from '@/src/core/api/transaction/TransactionListService';
 
 export default function useListTransaction() {
-    const [transactions, setTransactions] = useState<TableTransactionInterface[]>([]);
+    const [transactions, setTransactions] = useState<TransactionListApiInterface[]>([]);
     const [loading, setLoading] = useState(true);
 
     const listTransaction = async () => {
         setLoading(true)
         const service = (new TransactionListService());
         await service.__invoke()
-        setTransactions(service.data as TableTransactionInterface[])
+        setTransactions([...service.data])
         setLoading(false)
     }
 
-    useEffect(() => {
-        listTransaction()
-    }, [])
-
-    return { loading, transactions }
+    return { loading, transactions, listTransaction }
 }
