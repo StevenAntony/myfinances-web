@@ -1,7 +1,10 @@
 import SideBar from '@/src/components/layouts/SideBar'
+import { AppProvider } from '@/src/context/AppContext';
 
 export default function layout({ children } : Readonly<{ children: React.ReactNode; }>) {
   return (
-    <SideBar>{children}</SideBar>
+    <AppProvider>
+      <SideBar>{children}</SideBar>
+    </AppProvider>
   )
 }

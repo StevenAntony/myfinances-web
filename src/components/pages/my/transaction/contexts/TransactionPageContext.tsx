@@ -1,8 +1,6 @@
 'use client'
 import { createContext, useContext, useEffect, useState } from "react";
 import { TransactionPageContextType, TransactionPageProviderProps } from "./transaction-page";
-import useListCategory from "@/src/components/pages/my/categories/hooks/useListCategory";
-import { CategoryListApiInterface } from "@/src/core/api/category/category-api";
 import useListTransaction from "../hooks/useListTransaction";
 
 const TransactionPageContext = createContext<TransactionPageContextType | undefined>(undefined);
@@ -22,6 +20,7 @@ export const TransactionPageProvider = ({ children }: TransactionPageProviderPro
     const contextValue: TransactionPageContextType = {
         transactions,
         loadingListTransaction,
+        listTransaction,
     };
 
     useEffect(() => {

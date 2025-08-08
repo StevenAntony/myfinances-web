@@ -4,6 +4,7 @@ import { TransactionListApiInterface } from "@/src/core/api/transaction/transact
 export type TransactionPageContextType = {
     transactions: TransactionListApiInterface[];
     loadingListTransaction: boolean;
+    listTransaction: () => void;
 }
 
 export type TransactionPageProviderProps = {
