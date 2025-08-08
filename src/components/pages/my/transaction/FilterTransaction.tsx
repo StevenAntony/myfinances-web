@@ -52,8 +52,8 @@ export default function FilterTransaction() {
     };
     
     return (
-        <div className="card-custom flex gap-4">
-            <div className="w-[191px]">
+        <div className="card-custom flex gap-4 flex-wrap">
+            <div className="w-[191px] max-sm:!w-full">
                 <Radio.Group 
                     buttonStyle="solid"
                     value={filter.type}
@@ -63,7 +63,7 @@ export default function FilterTransaction() {
                     <Radio.Button value={ProcessType.EXPENSE}>💸 Gasto  </Radio.Button>
                 </Radio.Group>
             </div>
-            <div className="flex-1">
+            <div className="flex-1 max-sm:!w-full">
                 <Input.Search 
                     placeholder="Buscar..." 
                     value={filter.search}
@@ -72,6 +72,7 @@ export default function FilterTransaction() {
                 />
             </div>
             <Select
+                className="max-sm:!w-full"
                 placeholder="Cuenta"
                 style={{ width: 300 }}
                 value={filter.account}
@@ -88,6 +89,7 @@ export default function FilterTransaction() {
                 })}
             />
             <Select
+                className="max-sm:!w-full"
                 placeholder="Categoría"
                 style={{ width: 200 }}
                 value={filter.category}
@@ -118,7 +120,11 @@ export default function FilterTransaction() {
                     ]
                 }
             />
-            <Button onClick={handleClearFilters} type="default">
+            <Button 
+                className="max-sm:!w-full" 
+                onClick={handleClearFilters} 
+                type="default"
+            >
                 Limpiar
             </Button>
         </div>
