@@ -11,7 +11,7 @@ import { useEffect } from "react";
 
 export default function ListTransaction() {
 
-    const { loadingListTransaction, transactions, listTransaction } = useTransactionPageContext();
+    const { loadingListTransaction, filteredTransactions, listTransaction } = useTransactionPageContext();
     const { reloadTransaction } = useAppContext();
 
     const transactionTransform = (transaction: TransactionListApiInterface): CardTransactionInterface => {
@@ -36,7 +36,7 @@ export default function ListTransaction() {
             <PulseLoading isLoading={loadingListTransaction}>
                 <div className="space-y-4">
                     {
-                        transactions.map(transaction => <CardTransaction transaction={transactionTransform(transaction)} key={transaction.id} />)
+                        filteredTransactions.map(transaction => <CardTransaction transaction={transactionTransform(transaction)} key={transaction.id} />)
                     }
                 </div>
                 {/* <Table columns={columns} dataSource={transactions} rowKey={(row) => row.id} /> */}

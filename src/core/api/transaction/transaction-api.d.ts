@@ -22,9 +22,11 @@ export interface TransactionListApiInterface {
     description: string;
     note?: string;
     category: {
+        id: number;
         name: string;
     };
     account: {
+        id: number;
         name: string;
         type: AccountType;
     };

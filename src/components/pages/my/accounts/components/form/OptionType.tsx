@@ -5,6 +5,12 @@ type Props = {
     id: string;
 }
 
+/**
+ * 
+ * => Hook usardo fuera de la pagina
+ *  -> Page > Transacctions > FormTransactions
+ *  -> Page > Transacctions > FilterTransaction
+ */
 export default function OptionType({ data, id }: Props) {
     const Icon = AccountTypeInfo[id as AccountType].icon;
 

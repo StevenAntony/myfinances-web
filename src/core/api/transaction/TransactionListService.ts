@@ -15,8 +15,8 @@ export class TransactionListService extends SupaBaseService<TransactionListApiIn
                 note,
                 paymentMethod:payment_method,
                 date,
-                category:categories ( name ),
-                account:accounts ( name, type )
+                category:categories ( id, name ),
+                account:accounts ( id, name, type )
             `)
             .eq('active', true)
             .order('id', { ascending: false });

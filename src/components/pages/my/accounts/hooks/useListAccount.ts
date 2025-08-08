@@ -6,6 +6,7 @@ import AccountListService from "@/src/core/api/account/AccountListService";
  * 
  * => Hook usardo fuera de la pagina
  *  -> Page > Transacctions > FormTransactions
+ *  -> Page > Transacctions > FilterTransaction
  */
 export default function useListAccount() {
     const [accounts, setAccounts] = useState<CardAccountInterface[]>([]);

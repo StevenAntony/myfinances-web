@@ -6,6 +6,7 @@ import CardCategoryInterface from "../interfaces/card-category";
  * 
  * => Hook usardo fuera de la pagina
  *  -> Page > Transacctions > FormTransactions
+ *  -> Page > Transacctions > FilterTransaction
  */
 export default function useListCategory() {
     const [categories, setCategories] = useState<CardCategoryInterface[]>([]);
