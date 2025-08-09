@@ -31,3 +31,5 @@ export interface TransactionListApiInterface {
         type: AccountType;
     };
 }
+
+export interface TransactionMonthlySumaryApiInterface extends Pick<TransactionListApiInterface, 'id' | 'type' | 'amount'> { } 
