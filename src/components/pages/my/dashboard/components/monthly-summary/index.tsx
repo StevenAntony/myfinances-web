@@ -1,16 +1,16 @@
 'use client'
 import { Card } from "antd";
-import useMonthlySummary from "../../hooks/useMonthlySummary";
 import formatCurrency from "@/src/utils/shared/formats/formatCurrency";
 import { useEffect } from "react";
 import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
+import IncomeIcon from "@/src/components/icons/dashboard/IncomeIcon";
+import ExpensesIcon from "@/src/components/icons/dashboard/ExpensesIcon";
+import GoalIcon from "@/src/components/icons/dashboard/GoalIcon";
+import DollarSignIcon from "@/src/components/icons/dashboard/DollarSignIcon";
+import { useDashboardPageContext } from "../../contexts/DashboardPageContext";
 
 export default function MonthlySummary() {
-    const { data, loading, error, listMonthlySummary } = useMonthlySummary();
-
-    useEffect(() => {
-        listMonthlySummary(new Date().getMonth() + 1, new Date().getFullYear());
-    }, []);
+    const { monthlySummary: data, loadingMonthlySummary: loading, errorMonthlySummary: error } = useDashboardPageContext();
 
     const formatPercentageChange = (percentage: number) => {
         const isPositive = percentage >= 0;
@@ -57,7 +57,7 @@ export default function MonthlySummary() {
             <Card className="border-slate-200">
                 <div className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <div className="text-sm font-medium text-slate-600">Balance Total</div>
-                    {/* <DollarSign className="h-4 w-4 text-slate-400" /> */}
+                    <DollarSignIcon className="h-4 w-4 text-slate-400" />
                 </div>
                 <div>
                     <div className="text-2xl font-bold text-slate-900 font-mono-numbers tracking-tight">
@@ -70,7 +70,7 @@ export default function MonthlySummary() {
             <Card className="border-slate-200">
                 <div className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <div className="text-sm font-medium text-slate-600">Ingresos del Mes</div>
-                    {/* <TrendingUp className="h-4 w-4 text-emerald-500" /> */}
+                    <IncomeIcon className="h-4 w-4 text-emerald-500" />
                 </div>
                 <div>
                     <div className="text-2xl font-bold text-emerald-600 font-mono-numbers tracking-tight amount-positive">
@@ -83,7 +83,7 @@ export default function MonthlySummary() {
             <Card className="border-slate-200">
                 <div className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <div className="text-sm font-medium text-slate-600">Gastos del Mes</div>
-                    {/* <TrendingDown className="h-4 w-4 text-red-500" /> */}
+                    <ExpensesIcon className="h-4 w-4 text-rose-500" />
                 </div>
                 <div>
                     <div className="text-2xl font-bold text-rose-600 font-mono-numbers tracking-tight amount-negative">
@@ -96,7 +96,7 @@ export default function MonthlySummary() {
             <Card className="border-slate-200">
                 <div className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <div className="text-sm font-medium text-slate-600">Ahorro del Mes</div>
-                    {/* <Target className="h-4 w-4 text-blue-500" /> */}
+                    <GoalIcon className="h-4 w-4 text-blue-500" />
                 </div>
                 <div>
                     <div className="text-2xl font-bold text-blue-600 font-mono-numbers tracking-tight">

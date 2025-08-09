@@ -15,7 +15,11 @@ export default function useMonthlySummary() {
         return ((current - previous) / Math.abs(previous)) * 100;
     };
 
-    const listMonthlySummary = async (month: number, year: number) => {
+    const listMonthlySummary = async (
+        month: number, 
+        year: number,
+        accounts: AccountListApiInterface[] = []    
+    ) => {
         setLoading(true);
         setError(null);
         
@@ -38,10 +42,10 @@ export default function useMonthlySummary() {
             await servicePreviousMonth.__invoke(previousMonth, previousYear);
 
             // Obtener datos de cuentas (balance actual)
-            const serviceAccount = new AccountListService();
-            await serviceAccount.__invoke();
+            // const serviceAccount = new AccountListService();
+            // await serviceAccount.__invoke();
 
-            const dataAccount: AccountListApiInterface[] = serviceAccount.data as AccountListApiInterface[];
+            const dataAccount: AccountListApiInterface[] = accounts;
             const dataTransaction: TransactionMonthlySumaryApiInterface[] = service.data as TransactionMonthlySumaryApiInterface[];
             const dataPreviousMonth: TransactionMonthlySumaryApiInterface[] = servicePreviousMonth.data as TransactionMonthlySumaryApiInterface[];
 
