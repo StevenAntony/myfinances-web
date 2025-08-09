@@ -9,6 +9,9 @@ export type DashboardPageContextType = {
 
     accounts: CardAccountInterface[];
     loadingAccounts: boolean;
+
+    transactions: TransactionListApiInterface[];
+    loadingListTransaction: boolean;
 }
 
 export type DashboardPageProviderProps = {

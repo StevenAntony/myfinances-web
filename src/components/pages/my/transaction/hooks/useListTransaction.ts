@@ -2,6 +2,11 @@ import { useState } from 'react';
 import { TransactionListApiInterface } from '@/src/core/api/transaction/transaction-api';
 import { TransactionListService } from '@/src/core/api/transaction/TransactionListService';
 
+/**
+ * 
+ * => Hook usardo fuera de la pagina
+ *  -> Page > Dashboard
+ */
 export default function useListTransaction() {
     const [transactions, setTransactions] = useState<TransactionListApiInterface[]>([]);
     const [loading, setLoading] = useState(true);

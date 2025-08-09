@@ -24,6 +24,7 @@ export interface TransactionListApiInterface {
     category: {
         id: number;
         name: string;
+        icon: string;
     };
     account: {
         id: number;
