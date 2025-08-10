@@ -30,5 +30,5 @@ export function useAuth() {
     return () => subscription.unsubscribe();
   }, []); // El array de dependencias vacío asegura que se ejecute una sola vez al montar
 
-  return { session, isLoading, supabase };
+  return { session, isLoading, supabase, setSession };
 }

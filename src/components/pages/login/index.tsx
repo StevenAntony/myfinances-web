@@ -21,7 +21,43 @@ export default function Login() {
     return (
         <div className='w-screen h-svh flex justify-center items-center'>
             <div className='w-96'>
-                <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />
+                <Auth 
+                    supabaseClient={supabase} 
+                    appearance={{ theme: ThemeSupa }} 
+                    showLinks={false}
+                    localization={{
+                        variables: {
+                            sign_in: {
+                                email_label: 'Correo Electronico',
+                                password_label: 'Contraseña',
+                                email_input_placeholder: 'Correo Electronico',
+                                password_input_placeholder: 'Contraseña',
+                                button_label: 'Iniciar Sesión',
+                                loading_button_label: 'Iniciando Sesión',
+                                social_provider_text: 'Iniciar Sesión con',
+                                link_text: 'Iniciar Sesión',
+                            },
+                            forgotten_password: {
+                                email_label: 'Correo Electronico',
+                                password_label: 'Contraseña',
+                                email_input_placeholder: 'Correo Electronico',
+                                button_label: 'Recuperar Contraseña',
+                                loading_button_label: 'Recuperando Contraseña',
+                                link_text: '¿Olvidaste tu contraseña?',
+                            },
+                            sign_up: {
+                                email_label: 'Correo Electronico',
+                                password_label: 'Contraseña',
+                                email_input_placeholder: 'Correo Electronico',
+                                password_input_placeholder: 'Contraseña',
+                                button_label: 'Registrarse',
+                                loading_button_label: 'Registrando',
+                                social_provider_text: 'Registrarse con',
+                                link_text: '',
+                            }
+                        }
+                    }}
+                />
             </div>
         </div>
     )
