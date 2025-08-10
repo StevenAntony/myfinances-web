@@ -1,59 +1,24 @@
+'use client'
 import { Card } from "antd";
+import { useGoalPageContext } from "../../contexts/GoalPageContext";
+import { GoalListApiInterface } from "@/src/core/api/goal/goal-api";
+import formatCurrency from "@/src/utils/shared/formats/formatCurrency";
+import GoalIcon from "@/src/components/icons/dashboard/GoalIcon";
+import SavingIcon from "@/src/components/icons/account/SavingIcon";
 
 export default function SummaryGoals() {
-    const goals = [
-        {
-          id: 1,
-          title: "Fondo de Emergencia",
-          description: "6 meses de gastos básicos",
-          targetAmount: 30000,
-          currentAmount: 18500,
-          deadline: "2024-12-31",
-          category: "emergency",
-          icon: "🚨",
-        },
-        {
-          id: 2,
-          title: "Vacaciones en Europa",
-          description: "Viaje de 2 semanas",
-          targetAmount: 8000,
-          currentAmount: 3200,
-          deadline: "2024-07-15",
-          category: "travel",
-          icon: "✈️",
-        },
-        {
-          id: 3,
-          title: "Nuevo Automóvil",
-          description: "Enganche para auto nuevo",
-          targetAmount: 15000,
-          currentAmount: 7500,
-          deadline: "2024-10-01",
-          category: "vehicle",
-          icon: "🚗",
-        },
-        {
-          id: 4,
-          title: "Curso de Programación",
-          description: "Bootcamp de desarrollo web",
-          targetAmount: 2500,
-          currentAmount: 2500,
-          deadline: "2024-03-01",
-          category: "education",
-          icon: "💻",
-        },
-    ]
+    const { goals } = useGoalPageContext();
 
-    const totalGoalsAmount = goals.reduce((sum, goal) => sum + goal.targetAmount, 0)
-    const totalSavedAmount = goals.reduce((sum, goal) => sum + goal.currentAmount, 0)
-    const completedGoals = goals.filter((goal) => goal.currentAmount >= goal.targetAmount).length
+    const totalGoalsAmount = goals.reduce((sum, goal: GoalListApiInterface) => sum + goal.goalAmount, 0);
+    const totalSavedAmount = goals.reduce((sum, goal: GoalListApiInterface) => sum + goal.totalContributions, 0);
+    const completedGoals = goals.filter((goal: GoalListApiInterface) => goal.totalContributions >= goal.goalAmount).length
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         <Card className="border-slate-200">
           <div className="flex flex-row items-center justify-between space-y-0 pb-2">
             <div className="text-sm font-medium text-slate-600">Total de Metas</div>
-            {/* <Target className="h-4 w-4 text-slate-400" /> */}
+            <GoalIcon className="h-4 w-4 text-slate-400" />
           </div>
           <div>
             <div className="text-2xl font-bold text-slate-900">{goals.length}</div>
@@ -64,7 +29,7 @@ export default function SummaryGoals() {
         <Card className="border-slate-200">
           <div className="flex flex-row items-center justify-between space-y-0 pb-2">
             <div className="text-sm font-medium text-slate-600">Metas Completadas</div>
-            {/* <TrendingUp className="h-4 w-4 text-emerald-500" /> */}
+            <GoalIcon className="h-4 w-4 text-emerald-500" />
           </div>
           <div>
             <div className="text-2xl font-bold text-emerald-600">{completedGoals}</div>
@@ -77,10 +42,10 @@ export default function SummaryGoals() {
         <Card className="border-slate-200">
           <div className="flex flex-row items-center justify-between space-y-0 pb-2">
             <div className="text-sm font-medium text-slate-600">Total Ahorrado</div>
-            {/* <DollarSign className="h-4 w-4 text-blue-500" /> */}
+            <SavingIcon className="h-4 w-4 text-blue-500" />
           </div>
           <div>
-            <div className="text-2xl font-bold text-blue-600">${totalSavedAmount.toFixed(2)}</div>
+            <div className="text-2xl font-bold text-blue-600">{formatCurrency(totalSavedAmount)}</div>
             <p className="text-xs text-slate-500 mt-1">
               {((totalSavedAmount / totalGoalsAmount) * 100).toFixed(1)}% del objetivo total
             </p>
@@ -90,10 +55,10 @@ export default function SummaryGoals() {
         <Card className="border-slate-200">
           <div className="flex flex-row items-center justify-between space-y-0 pb-2">
             <div className="text-sm font-medium text-slate-600">Meta Total</div>
-            {/* <Target className="h-4 w-4 text-purple-500" /> */}
+            <GoalIcon className="h-4 w-4 text-purple-500" />
           </div>
           <div>
-            <div className="text-2xl font-bold text-purple-600">${totalGoalsAmount.toFixed(2)}</div>
+            <div className="text-2xl font-bold text-purple-600">{formatCurrency(totalGoalsAmount)}</div>
             <p className="text-xs text-slate-500 mt-1">Objetivo combinado</p>
           </div>
         </Card>

@@ -9,6 +9,11 @@ export type GoalPageContextType = {
     create: (body: GoalCreateApiInterface, success: () => void) => void;
     loadingCreate: boolean;
     errorCreate: string | null;
+
+    list: () => void;
+    loadingList: boolean;
+    goals: Array<GoalListApiInterface>;
+    errorList: string | null;
 }
 
 export type GoalPageProviderProps = {

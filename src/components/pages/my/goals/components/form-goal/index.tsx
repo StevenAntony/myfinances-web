@@ -3,7 +3,7 @@ import { useGoalPageContext } from "../../contexts/GoalPageContext";
 import dayjs from 'dayjs';
 
 export default function FormGoal() {
-    const { isOpenForm, closeForm, create, loadingCreate } = useGoalPageContext();
+    const { isOpenForm, closeForm, create, loadingCreate, list } = useGoalPageContext();
     const [messageApi, contextHolder] = message.useMessage();
     const [form] = Form.useForm();
 
@@ -31,6 +31,7 @@ export default function FormGoal() {
         create(formattedValues, () => {
             form.resetFields();
             closeForm();
+            list();
             messageApi.success('Meta creada exitosamente!');
         });
     };
