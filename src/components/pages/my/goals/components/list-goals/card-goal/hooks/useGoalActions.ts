@@ -1,7 +1,7 @@
 import { GoalListApiInterface } from "@/src/core/api/goal/goal-api";
 
 export interface GoalActionsProps {
-    onContribute: (goalId: number) => void;
+    onContribute: (goal: GoalListApiInterface) => void;
     onEdit: (goalId: number) => void;
     onDelete: (goalId: number) => void;
 }
@@ -18,7 +18,7 @@ export const useGoalActions = (goal: GoalListApiInterface, actions: GoalActionsP
             key: 'contributation',
             label: 'Aportar',
             disabled: isCompleted,
-            onClick: () => actions.onContribute(goal.id)
+            onClick: () => actions.onContribute(goal)
         },
         {
             key: 'edit',

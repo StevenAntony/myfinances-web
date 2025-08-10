@@ -18,3 +18,10 @@ export interface GoalListApiInterface {
     contributions: Array<{ amount: number }>;
     totalContributions: number;
 }
+
+export interface ContributionsCreateApiInterface {
+    goal_id: number;
+    amount: number;
+    date: string;
+    note?: string;
+}

@@ -3,6 +3,7 @@ import { Tag } from "antd"
 import CardGoal from "./card-goal"
 import { useGoalPageContext } from "../../contexts/GoalPageContext"
 import { GoalListApiInterface } from "@/src/core/api/goal/goal-api";
+import FormContributions from "./form-contributions";
 
 export default function ListGoals() {
     const { goals } = useGoalPageContext();
@@ -26,6 +27,7 @@ export default function ListGoals() {
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <FormContributions />
             {goals.map((goal) => <CardGoal key={goal.id} goal={goal} getStatusBadge={getStatusBadge} />)}
         </div>
     )

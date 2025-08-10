@@ -11,6 +11,7 @@ import GoalHeader from "./components/GoalHeader";
 import GoalProgress from "./components/GoalProgress";
 import GoalDeadline from "./components/GoalDeadline";
 import GoalActionsDropdown from "./components/GoalActionsDropdown";
+import { useGoalPageContext } from "../../../contexts/GoalPageContext";
 
 interface CardGoalProps {
     goal: GoalListApiInterface;
@@ -30,9 +31,14 @@ export default function CardGoal({ goal, getStatusBadge, actions }: CardGoalProp
         getProgressText
     } = useGoalCalculations(goal);
 
+    const { setOpenContributionForm, setSelectedGoal } = useGoalPageContext();
+
     // Default actions if not provided
     const defaultActions: GoalActionsProps = {
-        onContribute: (goalId: number) => console.log('Contribute to goal:', goalId),
+        onContribute: (goal: GoalListApiInterface) => {
+            setSelectedGoal(goal);
+            setOpenContributionForm(true);
+        },
         onEdit: (goalId: number) => console.log('Edit goal:', goalId),
         onDelete: (goalId: number) => console.log('Delete goal:', goalId)
     };
