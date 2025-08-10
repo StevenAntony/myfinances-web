@@ -41,6 +41,7 @@ export default function GoalProgress({
                 </div>
                 <Progress 
                     percent={Math.min(percentage, 100)} 
+                    showInfo={false}
                     className="h-3"
                     strokeColor={isCompleted ? "#10b981" : "#3b82f6"}
                 />

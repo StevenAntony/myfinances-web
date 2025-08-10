@@ -60,6 +60,15 @@ export default function FormContributions() {
                             rules={[
                                 { required: true, message: 'El monto es requerido' },
                                 { type: 'number', min: 1, message: 'El monto debe ser mayor a 0' },
+                                ({ getFieldValue }) => ({
+                                    validator(_, value) {
+                                        const goalAmount = selectedGoal?.goalAmount - selectedGoal?.totalContributions;
+                                        if (!value || !goalAmount || value <= goalAmount) {
+                                            return Promise.resolve();
+                                        }
+                                        return Promise.reject(new Error('El aporte no puede ser mayor a la meta restante'));
+                                    },
+                                })
                             ]}
                         >
                             <InputNumber 
