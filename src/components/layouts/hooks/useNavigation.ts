@@ -5,15 +5,15 @@ export const useNavigation = () => {
     const router = useRouter();
 
     const handleMenuClick: MenuProps['onClick'] = (e) => {
-        router.push(`/dashboard/${e.key}`);
+        router.push(`/${e.key}`);
     };
 
     const handleProfileClick = () => {
-        router.push('/dashboard/profile');
+        router.push('/profile');
     };
 
     const handleSettingsClick = () => {
-        router.push('/dashboard/settings');
+        router.push('/profile/settings');
     };
 
     const handleLogoutClick = () => {
