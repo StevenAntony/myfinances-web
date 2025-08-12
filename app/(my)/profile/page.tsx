@@ -1,7 +1,12 @@
+import CoverProfile from "@/src/components/pages/my/profile/my/components/cover-profile";
+import HeaderProfile from "@/src/components/pages/my/profile/my/components/header-profile";
+import { ProfileProvider } from "@/src/components/pages/my/profile/my/contexts/ProfileContext";
+
 export default function ProfilePage() {
     return (
-        <div>
-            <h1>Profile</h1>
-        </div>
+        <ProfileProvider>
+            <CoverProfile />
+            <HeaderProfile />
+        </ProfileProvider>
     )
 }

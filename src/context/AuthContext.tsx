@@ -6,14 +6,24 @@ import FullScreenLoading from "../components/loading/FullScreenLoading";
 import { useRouter } from 'next/navigation'
 
 type AuthContextType = {
+    profile: UserContextInterface | null;
+    setProfile: React.Dispatch<React.SetStateAction<UserContextInterface | null>>;
     isAuthenticated: Session | null;
     logout: () => void;
     isLoading: boolean;
 }
 
+export interface UserContextInterface {
+    name: string;
+    email: string;
+    avatar: string;
+    budget?: number;
+}
+
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+    const [profile, setProfile] = useState<UserContextInterface | null>(null);
     const [isCorrectSession, setIsCorrectSession] = useState<boolean>(false);
     const { session: isAuthenticated, setSession: setIsAuthenticated, isLoading } = useAuth();
     const router = useRouter()
@@ -22,10 +32,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         setIsAuthenticated(null);
     }
 
-    const value = {
+    const value: AuthContextType = {
         isAuthenticated,
         logout,
         isLoading,
+        setProfile,
+        profile,
     }
 
     useEffect(() => {
@@ -35,6 +47,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
         if (!isLoading && isAuthenticated) {
             setIsCorrectSession(true);
+            setProfile({
+                name: isAuthenticated.user.user_metadata.name || '',
+                email: isAuthenticated.user.email || '',
+                avatar: isAuthenticated.user.user_metadata.avatar || '',
+                budget: isAuthenticated.user.user_metadata.budget || 0
+            });
         }
       }, [isLoading, isAuthenticated, router])
 

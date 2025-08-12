@@ -14,7 +14,7 @@ export default function Login() {
     }
 
     if (session) {
-        router.push('/dashboard/transactions');
+        router.push('/transactions');
         return <FullScreenLoading />;
     }
     
