@@ -28,7 +28,6 @@ export default function ExpensesByCategory() {
                 }
             }
         });
-        console.log(expensesCategories);
         
         setExpensesByCategory(expensesCategories);
     }, [transactions])

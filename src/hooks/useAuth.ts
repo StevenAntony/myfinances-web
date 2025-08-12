@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
-import { createClient, Session } from '@supabase/supabase-js';
-
-const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL ?? '', process.env.NEXT_PUBLIC_SUPABASE_API_KEY ?? '');
+import supabase from '@/src/core/supabase/app.supabase';
+import { Session } from '@supabase/supabase-js';
 
 /**
  * Custom hook para gestionar la sesión de autenticación de Supabase.

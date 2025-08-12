@@ -41,7 +41,6 @@ const PWAInstallPrompt: React.FC = () => {
           boxShadow: '0 8px 24px rgba(0, 0, 0, 0.15)',
           border: '1px solid #e8e8e8',
         }}
-        bodyStyle={{ padding: '16px' }}
       >
         <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
           <MobileOutlined 
