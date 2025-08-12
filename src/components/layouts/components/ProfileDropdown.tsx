@@ -1,12 +1,17 @@
 import { Avatar, Dropdown } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { getProfileMenuItems, type ProfileMenuAction } from '../config/profileMenuConfig';
+import { useAuthContext } from '@/src/context/AuthContext';
+import { AVARTAR_DEFAULT } from '@/src/utils/consts/ProfileConst';
+import avatarUrl from '@/src/utils/shared/urls/avatarUrl';
 
 interface ProfileDropdownProps {
     actions: ProfileMenuAction;
 }
 
 export default function ProfileDropdown({ actions }: ProfileDropdownProps) {
+    const { profile } = useAuthContext();
+
     return (
         <Dropdown
             menu={{ items: getProfileMenuItems(actions) }}
@@ -15,9 +20,8 @@ export default function ProfileDropdown({ actions }: ProfileDropdownProps) {
         >
             <Avatar 
                 size="large" 
-                icon={<UserOutlined />}
+                src={avatarUrl(AVARTAR_DEFAULT[profile?.avatar as keyof typeof AVARTAR_DEFAULT])}
                 className="cursor-pointer hover:opacity-80 transition-opacity"
-                style={{ backgroundColor: '#10b981' }}
             />
         </Dropdown>
     );
