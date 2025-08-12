@@ -19,7 +19,7 @@ export default function HeaderProfile() {
             <Card className="overflow-hidden">
                 <div className="p-6">
                     <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center max-sm:flex-col gap-4">
                             <Avatar 
                                 src={avatarUrl(AVARTAR_DEFAULT[profile?.avatar as keyof typeof AVARTAR_DEFAULT])}
                                 size={120} 
