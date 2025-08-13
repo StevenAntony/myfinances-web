@@ -1,6 +1,7 @@
 import {
     AimOutlined,
     BarChartOutlined,
+    BookOutlined,
     CalculatorOutlined,
     CreditCardOutlined,
     FileTextOutlined,
@@ -28,6 +29,7 @@ export const menuItems: MenuItem[] = [
     { key: "analytics", label: "Análisis", icon: PieChartOutlined },
     { key: "accounts", label: "Cuentas", icon: WalletOutlined },
     { key: "loans", label: "Préstamos", icon: SignatureOutlined },
+    { key: "documentation", label: "Documentación", icon: BookOutlined },
 ];
 
 export const getMenuItems = (): MenuProps['items'] => {
