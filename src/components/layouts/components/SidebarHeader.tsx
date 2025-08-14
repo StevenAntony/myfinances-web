@@ -6,11 +6,16 @@ interface SidebarHeaderProps {
 
 export default function SidebarHeader({ collapsed }: SidebarHeaderProps) {
     return (
-        <div className="flex items-center justify-center gap-2 p-2 h-[64px]">
-            <div className="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center">
-                <WalletOutlined className="text-xl" style={{ color: "#fff" }} />
+        <div className="flex items-center gap-3 px-6 py-4 h-[72px] border-b border-gray-100">
+            <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg">
+                <WalletOutlined className="text-lg text-white" />
             </div>
-            {!collapsed && <h1 className="text-xl font-bold text-slate-800">Financia</h1>}
+            {!collapsed && (
+                <div className="flex flex-col">
+                    <h1 className="text-lg font-semibold text-gray-900 leading-tight">MyFinances</h1>
+                    <span className="text-xs text-gray-500 font-medium">Personal Finance</span>
+                </div>
+            )}
         </div>
     );
 }
