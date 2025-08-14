@@ -6,8 +6,9 @@ import { useAccountPageContext } from "./contexts/AccountPageContext"
 import formatCurrency from "@/src/utils/shared/formats/formatCurrency"
 import { AccountType, AccountTypeInfo } from "@/src/utils/consts/AccountType"
 import CardTypeAccount from "./components/card-type-account"
-import PulseLoading from "@/src/components/loading/PulseLoading"
 import EmptyList from "@/src/components/customs/empty/EmptyLIst"
+import { FinancialLoader } from "@/src/components/loading/FinancialLoader"
+import AccountSkeleton from "@/src/components/loading/skeleton/AccountSkeleton"
 
 export default function ListAccount() {
     const { accounts, loadingListAccount, refreshAccounts, setSelectedAccount, openForm } = useAccountPageContext();
@@ -18,6 +19,17 @@ export default function ListAccount() {
         const finResult = accounts.filter(account => account.type === type);
 
         return finResult.reduce((sum, account) => sum + account.balance, 0);
+    }
+
+    if (loadingListAccount) {
+        return (
+          <div className="space-y-6">
+            <div className="text-center py-4">
+              <FinancialLoader message="Cargando cuentas..." size="md" />
+            </div>
+            <AccountSkeleton />
+          </div>
+        )
     }
 
     return (
@@ -35,7 +47,6 @@ export default function ListAccount() {
             </Card>
 
             {/* Accounts Grid */}
-            <PulseLoading isLoading={loadingListAccount}>
                 {
                     accounts.length === 0
                         ? (
@@ -65,7 +76,6 @@ export default function ListAccount() {
                             </div>
                         )
                 }
-            </PulseLoading>
 
             {/* Account Summary */}
             <Card className="border-slate-200">
