@@ -12,6 +12,10 @@ export type AccountPageContextType = {
 
     accounts: CardAccountInterface[];
     loadingListAccount: boolean;
+    refreshAccounts: () => void;
+    
+    selectedAccount: CardAccountInterface | null;
+    setSelectedAccount: (account: CardAccountInterface | null) => void;
 }
 
 export type AccountPageProviderProps = {

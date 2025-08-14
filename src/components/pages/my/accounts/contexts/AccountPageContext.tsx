@@ -3,19 +3,26 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { AccountPageContextType, AccountPageProviderProps } from "./account-page";
 import useCreateOrUpdateAccount from "../hooks/useCreateOrUpdateAccount";
 import useListAccount from "../hooks/useListAccount";
+import CardAccountInterface from "../interfaces/card-account";
 const AccountPageContext = createContext<AccountPageContextType | undefined>(undefined);
 
 export const AccountPageProvider = ({ children }: AccountPageProviderProps) => {
     const [isOpenForm, setOpenForm] = useState<boolean>(false);
+    const [selectedAccount, setSelectedAccount] = useState<CardAccountInterface | null>(null);
     const { create, loading: loadingSaveAccount } = useCreateOrUpdateAccount();
     const { list, accounts, loading: loadingListAccount } = useListAccount();
 
     const closeForm = () => {
         setOpenForm(false);
+        setSelectedAccount(null);
     }
 
     const openForm = () => {
         setOpenForm(true);
+    }
+
+    const refreshAccounts = () => {
+        list();
     }
 
     const contextValue: AccountPageContextType = {
@@ -28,6 +35,10 @@ export const AccountPageProvider = ({ children }: AccountPageProviderProps) => {
 
         accounts,
         loadingListAccount,
+        refreshAccounts,
+        
+        selectedAccount,
+        setSelectedAccount,
     };
 
     useEffect(() => {

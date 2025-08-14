@@ -10,7 +10,7 @@ import PulseLoading from "@/src/components/loading/PulseLoading"
 import EmptyList from "@/src/components/customs/empty/EmptyLIst"
 
 export default function ListAccount() {
-    const { accounts, loadingListAccount } = useAccountPageContext();
+    const { accounts, loadingListAccount, refreshAccounts, setSelectedAccount, openForm } = useAccountPageContext();
 
     const totalBalance = accounts.reduce((sum, account) => sum + account.balance, 0);
 
@@ -49,7 +49,19 @@ export default function ListAccount() {
                         )
                         : (
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                {accounts.map((account) => <CardAccount account={account} key={account.id} />)}
+                                {accounts.map((account) => (
+                                    <CardAccount 
+                                        account={account} 
+                                        key={account.id}
+                                        onEdit={(account) => {
+                                            setSelectedAccount(account);
+                                            openForm();
+                                        }}
+                                        onDelete={() => {
+                                            refreshAccounts();
+                                        }}
+                                    />
+                                ))}
                             </div>
                         )
                 }
