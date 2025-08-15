@@ -6,11 +6,11 @@ export default function useCreateOrUpdateAccount() {
     const [loading, setLoading] = useState(false);
     // const [error, setError] = useState<string | null>(null);
 
-    const create = async (body: AccountCreateApiInterface, success: () => void) => {
+    const create = async (body: AccountCreateApiInterface, callback: (success: boolean) => void, accountId?: number) => {
         setLoading(true)
         const service = (new AccountCreateOrUpdateService());
-        await service.__invoke(body);
-        success();
+        await service.__invoke(body, accountId);
+        callback(service.success);
         setLoading(false);
     }
 

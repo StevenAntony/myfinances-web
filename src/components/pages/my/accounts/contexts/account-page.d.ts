@@ -7,7 +7,7 @@ export type AccountPageContextType = {
     closeForm: () => void;
     openForm: () => void;
 
-    create: ( category: AccountCreateApiInterface, success: () => void ) => void;
+    create: ( category: AccountCreateApiInterface, success: (success: boolean) => void, accountId?: number ) => void;
     loadingSaveAccount: boolean;
 
     accounts: CardAccountInterface[];

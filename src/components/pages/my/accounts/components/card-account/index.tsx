@@ -14,6 +14,7 @@ type Props = {
 }
 
 export default function CardAccount({ account, onEdit, onDelete }: Props) {
+    const [modal, contextHolder] = Modal.useModal();
 
     const isNegative = account.balance < 0
     const colors = getColorClasses(account.color, isNegative)
@@ -32,8 +33,8 @@ export default function CardAccount({ account, onEdit, onDelete }: Props) {
         }
     };
 
-    const handleDelete = () => {
-        Modal.confirm({
+    const handleDelete = async () => {
+        await modal.confirm({
             title: '¿Estás seguro de eliminar esta cuenta?',
             content: `Se eliminará permanentemente la cuenta "${account.name}". Esta acción no se puede deshacer.`,
             okText: 'Eliminar',
@@ -69,6 +70,7 @@ export default function CardAccount({ account, onEdit, onDelete }: Props) {
     return (
         <div className="group relative bg-white rounded-2xl border border-slate-200/60 hover:border-slate-300/80 transition-all duration-300 hover:shadow-lg hover:shadow-slate-200/50 overflow-hidden">
             {/* Gradient Background Accent */}
+            {contextHolder}
             <div 
                 className="absolute top-0 left-0 right-0 h-1 opacity-80"
                 style={{background: `linear-gradient(90deg, ${accountType.color}, ${accountType.color}80)`}}
@@ -139,7 +141,7 @@ export default function CardAccount({ account, onEdit, onDelete }: Props) {
                     <p className="text-sm text-slate-500">Balance actual</p>
                     {account.accountNumber && (
                         <p className="text-xs text-slate-400 mt-1 font-mono">
-                            ••• {account.accountNumber.length > 4 && account.accountNumber.slice(-4)}
+                            ••• {account.accountNumber.toString().length > 4 && account.accountNumber.toString().slice(-4)}
                         </p>
                     )}
                 </div>

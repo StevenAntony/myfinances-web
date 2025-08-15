@@ -4,17 +4,32 @@ import supabase from "../../supabase/app.supabase";
 import { AccountCreateApiInterface } from "./account-api";
 
 export default class AccountCreateOrUpdateService extends SupaBaseService<string, PostgrestError> {
-    async __invoke(body: AccountCreateApiInterface) {
-        const { data, error } = await supabase.from('accounts').insert([
-            { ...body }
-        ]);
+    async __invoke(body: AccountCreateApiInterface, accountId?: number) {
 
-        if (error) {
-            this.error = error;
+        try {
+            if( accountId ) {
+                const { data, error } = await supabase.from('accounts').update([
+                    { ...body }
+                ]).eq('id', accountId);
+                if (error) {
+                    this.error = error;
+                    this.success = false;
+                }
+            }else{
+                const { data, error } = await supabase.from('accounts').insert([
+                    { ...body }
+                ]);
+                if (error) {
+                    this.error = error;
+                    this.success = false;
+                }    
+            }
+    
+            this.data = [];   
+        } catch (err) {
+            this.error = err as PostgrestError;
             this.success = false;
         }
-
-        this.data = [data ?? ''];
         
     }
 }
