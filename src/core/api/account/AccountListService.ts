@@ -8,7 +8,8 @@ export default class AccountListService extends SupaBaseService<AccountListApiIn
     async __invoke() {
         const { data, error } = await supabase.from('accounts')
             .select('*')
-            .eq('active', true);
+            .eq('active', true)
+            .order('id', { ascending: false });
 
         if (error) {
             this.error = error;
