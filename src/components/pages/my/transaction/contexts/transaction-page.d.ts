@@ -7,6 +7,9 @@ export type TransactionPageContextType = {
     filteredTransactions: TransactionListApiInterface[];
     loadingListTransaction: boolean;
     listTransaction: () => void;
+    refreshTransactions: () => void;
+    selectedTransaction: TransactionListApiInterface | null;
+    setSelectedTransaction: (transaction: TransactionListApiInterface | null) => void;
     filter: FilterTransactionInterface;
     setFilter: (filter: FilterTransactionInterface) => void;
     clearFilters: () => void;

@@ -4,11 +4,13 @@ import { TransactionPageContextType, TransactionPageProviderProps } from "./tran
 import useListTransaction from "../hooks/useListTransaction";
 import FilterTransactionInterface from "../interfaces/filter-transaction";
 import { ProcessType } from "@/src/utils/consts/ProcessType";
+import { TransactionListApiInterface } from "@/src/core/api/transaction/transaction-api";
 
 const TransactionPageContext = createContext<TransactionPageContextType | undefined>(undefined);
 
 export const TransactionPageProvider = ({ children }: TransactionPageProviderProps) => {
     const [isOpenForm, setOpenForm] = useState<boolean>(false);
+    const [selectedTransaction, setSelectedTransaction] = useState<TransactionListApiInterface | null>(null);
     const { listTransaction, loading: loadingListTransaction, transactions } = useListTransaction();
     
     const [filter, setFilter] = useState<FilterTransactionInterface>({
@@ -62,11 +64,18 @@ export const TransactionPageProvider = ({ children }: TransactionPageProviderPro
         setOpenForm(true);
     }
 
+    const refreshTransactions = () => {
+        listTransaction();
+    };
+
     const contextValue: TransactionPageContextType = {
         transactions,
         filteredTransactions,
         loadingListTransaction,
         listTransaction,
+        refreshTransactions,
+        selectedTransaction,
+        setSelectedTransaction,
         filter,
         setFilter,
         clearFilters,
