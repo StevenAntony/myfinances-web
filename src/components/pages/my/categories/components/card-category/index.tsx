@@ -1,16 +1,18 @@
 'use client'
-import { Button } from "antd";
+import { Button, Dropdown } from "antd";
+import type { MenuProps } from "antd";
 import CardCategoryInterface from "../../interfaces/card-category";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import formatCurrency from "@/src/utils/shared/formats/formatCurrency";
+import { EllipsisVertical } from "lucide-react";
 
 type Props = {
     category: CardCategoryInterface;
-    deleteCategory: ( id: number ) => void;
     loadingDeleteCategory: boolean;
+    actionsMenu: MenuProps['items'];
+    setSelectedCategory: ( category: CardCategoryInterface | null ) => void;
 }
 
-export default function CardCategory({ category, deleteCategory, loadingDeleteCategory }: Props) {
+export default function CardCategory({ category, loadingDeleteCategory, actionsMenu, setSelectedCategory }: Props) {
 
     const percentage = category.budget > 0 ? (category.monthlySpent / category.budget) * 100 : 0
     const isOverBudget = percentage > 100
@@ -28,16 +30,22 @@ export default function CardCategory({ category, deleteCategory, loadingDeleteCa
                         </div>
                     </div>
                     <div className="flex gap-1">
-                        <Button  className="h-8 w-8">
-                            <EditOutlined className="w-3 h-3" />
-                        </Button>
-                        <Button  
-                            className="h-8 w-8 text-red-600" 
-                            onClick={() => deleteCategory(category.id as number)}
-                            loading={loadingDeleteCategory}
+                        <Dropdown
+                            menu={{items: actionsMenu}} 
+                            onOpenChange={(open) => {
+                                setSelectedCategory(category)
+                            }}
+                            placement="bottomRight"
+                            trigger={['click']}          
                         >
-                            <DeleteOutlined className="w-3 h-3" />
-                        </Button>
+                             <Button 
+                                type="text" 
+                                icon={<EllipsisVertical size={16} />} 
+                                size="small"
+                                loading={loadingDeleteCategory}
+                                className="text-slate-600 hover:bg-slate-50 rounded-lg transition-all duration-200"
+                            />
+                        </Dropdown>                   
                     </div>
                 </div>
             </div>

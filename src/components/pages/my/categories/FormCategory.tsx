@@ -3,29 +3,53 @@ import { Button, Drawer, Form, Input, InputNumber, message, Select } from "antd"
 import { useCategoriesPageContext } from "./contexts/CategoriesPageContext";
 import { colorPaletteCategoryData, emojiCategoryData } from "@/src/utils/data/categoryData";
 import { CategoryCreateApiInterface } from "@/src/core/api/category/category-api";
+import { useEffect } from "react";
 
 export default function FormCategory() {
     const [messageApi, contextHolder] = message.useMessage();
-    const { isOpenForm, closeForm, createOrUpdateCategory, loadingSaveCategory, listCategory } = useCategoriesPageContext();
+    const { isOpenForm, closeForm, createOrUpdateCategory, loadingSaveCategory, listCategory, selectedCategory } = useCategoriesPageContext();
     const [form] = Form.useForm();
 
     const handleFinish = (values: CategoryCreateApiInterface) => {
-        createOrUpdateCategory(values, () => {
-            closeForm();
-            listCategory();
-            messageApi.success('Categoria creada!');
-        });
+        createOrUpdateCategory(values, (success) => {
+            if (success) {
+                closeForm();
+                listCategory();
+                messageApi.success(selectedCategory ? 'Categoria actualizada!' : 'Categoria creada!');
+            }else{
+                messageApi.error(selectedCategory ? 'Error al actualizar la categoria' : 'Error al crear la categoria');
+            }
+        }, selectedCategory?.id as number);
     }
+
+    useEffect(() => {
+        if(!isOpenForm){
+            form.resetFields();
+        }
+    }, [isOpenForm]);
+
+    useEffect(() => {
+        if (selectedCategory && isOpenForm) {
+            form.setFieldsValue({
+                name: selectedCategory.name,
+                type: selectedCategory.type,
+                budget: selectedCategory.budget,
+                color: selectedCategory.color,
+                icon: selectedCategory.icon,
+            });
+        }
+    }, [selectedCategory, isOpenForm, form]);
 
     return (
         <>
             { contextHolder }
             <Drawer
-                title="Crear categoria"
+                title={selectedCategory ? `Editar categoria "${selectedCategory.name}"` : 'Crear categoria'}
                 closable={{ 'aria-label': 'Close Button' }}
                 onClose={closeForm}
                 open={isOpenForm}
                 width={400}
+                destroyOnHidden={true}
             >
                 <Form
                     form={form}
@@ -41,6 +65,7 @@ export default function FormCategory() {
                     <div className="relative flex gap-4 justify-between">
                         <Form.Item label="Tipo" required name={'type'} >
                             <Select
+                                disabled={selectedCategory ? true : false}
                                 placeholder='Seleccionar tipo'
                                 options={[
                                     { label: 'Ingresos', value: 'income' },

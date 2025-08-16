@@ -8,7 +8,8 @@ export default class CategoryListService extends SupaBaseService<CategoryListApi
     async __invoke() {
         const { data, error } = await supabase.from('categories')
             .select('*')
-            .eq('active', true);
+            .eq('active', true)
+            .order('id', { ascending: false });
 
         if (error) {
             this.error = error;

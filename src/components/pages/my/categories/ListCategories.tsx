@@ -2,31 +2,35 @@
 import { ProcessType } from "@/src/utils/consts/ProcessType";
 import CardCategory from "./components/card-category"
 import { useCategoriesPageContext } from "./contexts/CategoriesPageContext"
-import PulseLoading from "@/src/components/loading/PulseLoading";
 import EmptyCategory from "./components/empty-category";
+import { FinancialLoader } from "@/src/components/loading/FinancialLoader";
 
 export default function ListCategories() {
     const {
         categories,
         loadingListCategory,
-        deleteCategory,
-        listCategory,
         loadingDeleteCategory,
+        actionsMenu,
+        setSelectedCategory,
     } = useCategoriesPageContext();
 
     const filterCategory = (type: ProcessType) => {
         return categories.filter((cat) => cat.type === type)
     }
 
-    const deleteCategoryInList = (id: number) => {
-        deleteCategory(id, () => {
-            listCategory();
-        })
+    if (loadingListCategory) {
+        return (
+          <div className="space-y-6">
+            <div className="text-center py-4">
+              <FinancialLoader message="Cargando categorias..." size="md" />
+            </div>
+          </div>
+        )
     }
 
     return (
         <div className="space-y-6">
-            <PulseLoading isLoading={loadingListCategory}>
+            <div>
                 {
                     categories.length === 0
                         ? <EmptyCategory />
@@ -39,9 +43,10 @@ export default function ListCategories() {
                                         {filterCategory(ProcessType.EXPENSE).map((category) => (
                                             <CardCategory
                                                 category={category}
-                                                deleteCategory={deleteCategoryInList}
                                                 loadingDeleteCategory={loadingDeleteCategory}
                                                 key={category.id}
+                                                actionsMenu={actionsMenu}
+                                                setSelectedCategory={setSelectedCategory}
                                             />
                                         ))}
                                     </div>
@@ -54,8 +59,9 @@ export default function ListCategories() {
                                         {filterCategory(ProcessType.INCOME).map((category) => (
                                             <CardCategory
                                                 category={category}
-                                                deleteCategory={deleteCategoryInList}
                                                 loadingDeleteCategory={loadingDeleteCategory}
+                                                actionsMenu={actionsMenu}
+                                                setSelectedCategory={setSelectedCategory}
                                                 key={category.id}
                                             />
                                         ))}
@@ -64,7 +70,7 @@ export default function ListCategories() {
                             </>
                         )
                 }
-            </PulseLoading>
+            </div>
         </div>
     )
 }

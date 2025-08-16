@@ -4,14 +4,17 @@ import { useCategoriesPageContext } from "./contexts/CategoriesPageContext"
 import FormCategory from "./FormCategory";
 
 export default function HeaderCategory() {
-    const { openForm } = useCategoriesPageContext();
+    const { openForm, setSelectedCategory } = useCategoriesPageContext();
     return (
         <div>
             <TitlePage
                 title="Categorías"
                 description="Organiza tus ingresos y gastos por categorías"
                 titleButton="Nueva Categoría"
-                handleButton={openForm}
+                handleButton={() => {
+                    setSelectedCategory(null);
+                    openForm();
+                }}
             />
             <FormCategory />
         </div>
